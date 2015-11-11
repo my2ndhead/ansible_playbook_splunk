@@ -1,0 +1,4 @@
+---
+
+- name: Get Splunk
+  get_url: url="{{ splunk_release_url }}" dest="/tmp/{{ splunk_release_file }}" mode=600

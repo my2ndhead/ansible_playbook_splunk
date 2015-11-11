@@ -1,0 +1,4 @@
+---
+
+- name: Start during boot
+  command: /opt/splunk/bin/splunk enable boot-start -user splunk --answer-yes --accept-license

@@ -1,0 +1,3 @@
+---
+splunk_web_enableSplunkWebSSL: true
+splunk_web_httpport: 8000
