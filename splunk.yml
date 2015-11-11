@@ -1,12 +1,12 @@
 - name: apply common configuration to all nodes
-  hosts: all
+  hosts: splunk*
   remote_user: root
 
   roles:
     - common
 
 - name: configure and deploy the webservers and application code
-  hosts: splunk_searchheads 
+  hosts: splunk_searchheads*
   become_user: splunk
 
   roles:
