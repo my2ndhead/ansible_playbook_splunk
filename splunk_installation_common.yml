@@ -1,0 +1,6 @@
+- name: Install Splunk on all hosts
+  hosts: splunk_*:!splunk_repository
+  remote_user: root
+
+  roles:
+    - common

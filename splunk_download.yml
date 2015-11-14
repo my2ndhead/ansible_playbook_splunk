@@ -1,0 +1,5 @@
+---
+-  hosts: splunk_repository
+   tasks:
+   - name: Download Splunk package
+     get_url: url={{ splunk_installation.package_url }} dest={{ splunk_repository.repository_root }}/packages mode=600

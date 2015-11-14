@@ -1,0 +1,2 @@
+---
+- include: configure_inputs_conf.yml

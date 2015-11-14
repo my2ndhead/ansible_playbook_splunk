@@ -1,0 +1,4 @@
+---
+
+- name: Install IA-searchhead template app from git
+  git: repo=https://github.com/my2ndhead/IA-searchhead.git dest=/opt/splunk/etc/apps/IA-searchhead version=template force=yes

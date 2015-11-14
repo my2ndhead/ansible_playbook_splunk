@@ -1,0 +1,31 @@
+---
+
+#####################################################################################################################
+# General Installation Variables
+#####################################################################################################################
+splunk_conf_path: /opt/splunk/etc/apps/IA-indexer/default
+
+#####################################################################################################################
+# Configurations for Splunk inputs.conf
+#####################################################################################################################
+
+splunk_inputs_conf:
+  splunktcp: disable
+  splunktcp_port: 9997
+  splunktcp_ssl: enable
+  splunktcp_ssl_port: 9997
+  SSL_rootCA: $SPLUNK_HOME/etc/auth/cacert.pem
+  SSL_serverCert: $SPLUNK_HOME/etc/auth/server.pem
+  SSL_password: $1$2lO4zAA+GjIL
+  
+#####################################################################################################################
+# Configurations for Splunk web.conf
+#####################################################################################################################
+
+splunk_web_conf:
+  settings_enableSplunkWebSSL: true
+  settings_httpport: 8000
+  settings_startwebserver: 0
+  settings_privKeyPath: etc/auth/splunkweb/privkey.pem
+  settings_caCertPath: etc/auth/splunkweb/cert.pem
+  settings_updateCheckerBaseURL: 0

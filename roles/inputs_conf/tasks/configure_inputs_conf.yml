@@ -1,0 +1,85 @@
+---
+#####################################################################################################################
+# Configurations for Splunk inputs.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [splunktcp:<port>]
+#####################################################################################################################
+
+- name: Set splunktcp
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=splunktcp:{{ splunk_inputs_conf.splunktcp_port }} 
+            state=present
+  when: splunk_inputs_conf.splunktcp is defined and
+        splunk_inputs_conf.splunktcp == "enable"
+
+- name: Unset splunktcp input (default)
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=splunktcp:{{ splunk_inputs_conf.splunktcp_port }} 
+            state=absent
+  when: splunk_inputs_conf.splunktcp is defined and
+        splunk_inputs_conf.splunktcp == "disable"
+
+#####################################################################################################################
+# [splunktcp-ssl:<port>]
+#####################################################################################################################
+
+- name: Set splunktcp-ssl
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=splunktcp-ssl:{{ splunk_inputs_conf.splunktcp_ssl_port }}  
+            state=present
+  when: splunk_inputs_conf.splunktcp_ssl is defined and 
+        splunk_inputs_conf.splunktcp_ssl == "enable"
+
+- name: Unset splunktcp-ssl (default)
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=splunktcp-ssl:{{ splunk_inputs_conf.splunktcp_ssl_port }} 
+            state=absent
+  when: splunk_inputs_conf.splunktcp_ssl is defined and
+        splunk_inputs_conf.splunktcp_ssl == "disable"
+
+#####################################################################################################################
+# [SSL]
+#####################################################################################################################
+
+# rootCA
+
+- name: Set rootCA
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=SSL option=rootCA 
+            value={{ splunk_inputs_conf.SSL_rootCA }}
+            state=present
+  when: splunk_inputs_conf.splunktcp_ssl is defined and
+        splunk_inputs_conf.splunktcp_ssl == "enable"
+
+# serverCert
+
+- name: Set serverCert
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=SSL 
+            option=serverCert
+            value={{ splunk_inputs_conf.SSL_serverCert }}
+            state=present
+  when: splunk_inputs_conf.splunktcp_ssl is defined and 
+        splunk_inputs_conf.splunktcp_ssl == "enable"
+
+# password
+
+- name: Set password
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=SSL
+            option=password
+            value={{ splunk_inputs_conf.SSL_password }}
+            state=present
+  when: splunk_inputs_conf.splunktcp_ssl is defined and 
+        splunk_inputs_conf.splunktcp_ssl == "enable"
+
+# SSL
+
+- name: Unset SSL (default)
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=SSL
+            state=absent
+  when: splunk_inputs_conf.splunktcp_ssl is defined and 
+        splunk_inputs_conf.splunktcp_ssl == "disable"

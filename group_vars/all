@@ -1,10 +1,34 @@
 ---
-splunk_home: /opt/splunk
-splunk_version: 6.3.1
+#####################################################################################################################
+# Global Variables
+#####################################################################################################################
 
-splunk_release_url: http://download.splunk.com/products/splunk/releases/6.3.1/splunk/linux/splunk-6.3.1-f3e41e4b37b2-linux-2.6-x86_64.rpm
-splunk_release_file: splunk-6.3.1-f3e41e4b37b2-linux-2.6-x86_64.rpm
+splunk_repository:
+  repository_root: /var/lib/splunk_repository
 
-splunk_secret: 9uaY9Z02G69pWDMd6lUQGRISmgoRllMloZTsUf3EN/aV4Tp2F5EZynoNYEyEakTrrFhnUrti/f23DdziWTGU6WGJkPnJ07uxYDByH0dLKMjWjpPGxeOZ5WHt3D3dF5qyryO27KBWJ3ZWBMfUow85cX/0RHRIQv3C28q8R7m17YUVhsv6b8CVfG/kWIVqTdpcR.jElzKYv75X2GdRgvLyBDWLC7KplnOgmaiZ0bfpaNlEV.Yp4acowkHqH4USRb
-splunk_sslconfig_sslkeysfilepassword: $1$nhb+jVVyTmEL
-splunk_general_pass4symmkey: $1$yVqq0RA0BTML
+#####################################################################################################################
+# Installation Variables
+#####################################################################################################################
+splunk_installation:
+  splunk_home_path: /opt/splunk
+  version: 6.3.1
+
+  package_format: rpm
+# package_format: [rpm|tgz]
+
+  package_url: http://download.splunk.com/products/splunk/releases/6.3.1/splunk/linux/splunk-6.3.1-f3e41e4b37b2-linux-2.6-x86_64.rpm
+# package_url: http://download.splunk.com/products/splunk/releases/6.3.1/splunk/linux/splunk-6.3.1-f3e41e4b37b2-Linux-x86_64.tgz
+  package_file: splunk-6.3.1-f3e41e4b37b2-linux-2.6-x86_64.rpm
+# package_file: splunk-6.3.1-f3e41e4b37b2-Linux-x86_64.tgz
+
+  admin_password: verysecret
+
+  splunk_secret: 9uaY9Z02G69pWDMd6lUQGRISmgoRllMloZTsUf3EN/aV4Tp2F5EZynoNYEyEakTrrFhnUrti/f23DdziWTGU6WGJkPnJ07uxYDByH0dLKMjWjpPGxeOZ5WHt3D3dF5qyryO27KBWJ3ZWBMfUow85cX/0RHRIQv3C28q8R7m17YUVhsv6b8CVfG/kWIVqTdpcR.jElzKYv75X2GdRgvLyBDWLC7KplnOgmaiZ0bfpaNlEV.Yp4acowkHqH4USRb
+
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+splunk_server_conf:
+  general_pass4symmkey: $1$yVqq0RA0BTML
+  sslconfig_sslkeysfilepassword: $1$nhb+jVVyTmEL

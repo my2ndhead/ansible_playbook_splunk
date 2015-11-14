@@ -1,0 +1,3 @@
+---
+- name: Install IA-indexer template app from git
+  git: repo=https://github.com/my2ndhead/IA-indexer.git dest=/opt/splunk/etc/apps/IA-indexer version=template force=yes

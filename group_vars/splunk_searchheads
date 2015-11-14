@@ -1,3 +1,41 @@
 ---
-splunk_web_enableSplunkWebSSL: true
-splunk_web_httpport: 8000
+
+#####################################################################################################################
+# General Installation Variables
+#####################################################################################################################
+splunk_conf_path: /opt/splunk/etc/apps/IA-searchhead/default
+
+#####################################################################################################################
+# Configurations for Splunk web.conf
+#####################################################################################################################
+
+splunk_web_conf:
+  settings_enableSplunkWebSSL: True
+  settings_httpport: 8000
+  settings_startwebserver: 0
+  settings_privKeyPath: etc/auth/splunkweb/privkey.pem
+  settings_caCertPath: etc/auth/splunkweb/cert.pem
+  settings_updateCheckerBaseURL: 0
+
+#####################################################################################################################
+# Configurations for Splunk outputs.conf
+#####################################################################################################################
+
+splunk_outputs_conf:
+  tcpout_defaultGroup: production
+  tcpout_target_groups: 
+    production:
+      useACK: true
+      server: server1:8089,server2:8089
+      sslPassword: VerySecret
+      sslCertPath: $SPLUNK_HOME/etc/auth/server.pem
+      sslRootCAPath: $SPLUNK_HOME/etc/auth/ca.pem
+      sslVerifyServerCert: true
+
+    staging:
+      useACK: true
+      indexerDiscovery: staging_cluster
+  indexer_discovery:
+    staging_cluster:
+      pass4SymmKey: SecretKey
+      master_uri: "https://127.0.0.1:8089"

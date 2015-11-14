@@ -1,3 +1,4 @@
-# hosts template
-[splunk_searchheads_prod]
+[splunk_repository]
+localhost	ansible_connection=local
 
+[splunk_searchheads]
