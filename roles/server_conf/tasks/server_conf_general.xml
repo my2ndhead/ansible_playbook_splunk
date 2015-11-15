@@ -1,0 +1,42 @@
+---
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [general]
+#####################################################################################################################
+
+# site
+
+- name: Set site
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=general
+            option=site
+            value={{ splunk_server_conf.general.site }}
+            state=present
+  when: splunk_server_conf.general.site is defined
+
+- name: Unset site (default)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=general
+            option=site
+            state=absent
+  when: splunk_server_conf.general.site is undefined
+
+# trustedIP
+
+- name: Set trustedIP
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=general
+            option=trustedIP
+            value={{ splunk_server_conf.general.trustedIP }}
+            state=present
+  when: splunk_server_conf.general.trustedIP is defined
+
+- name: Unset site (default)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=general
+            option=trustedIP
+            state=absent
+  when: splunk_server_conf.general.trustedIP is undefined

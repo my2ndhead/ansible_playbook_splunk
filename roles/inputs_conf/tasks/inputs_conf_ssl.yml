@@ -11,11 +11,19 @@
 
 - name: Set rootCA
   ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
-            section=SSL option=rootCA 
-            value={{ splunk_inputs_conf.SSL_rootCA }}
+            section=SSL
+            option=rootCA 
+            value={{ splunk_inputs_conf.SSL.rootCA }}
             state=present
-  when: splunk_inputs_conf.splunktcp_ssl is defined and
-        splunk_inputs_conf.splunktcp_ssl == "enable"
+  when: splunk_inputs_conf.SSL.rootCA is defined
+
+- name: Unset rootCA (default)
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=SSL 
+            option=rootCA
+            state=absent
+  when: splunk_inputs_conf.SSL.rootCA is undefined
+
 
 # serverCert
 
@@ -23,10 +31,16 @@
   ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
             section=SSL 
             option=serverCert
-            value={{ splunk_inputs_conf.SSL_serverCert }}
+            value={{ splunk_inputs_conf.SSL.serverCert }}
             state=present
-  when: splunk_inputs_conf.splunktcp_ssl is defined and 
-        splunk_inputs_conf.splunktcp_ssl == "enable"
+  when: splunk_inputs_conf.SSL.rootCA is defined
+
+- name: Unset serverCert (default)
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=SSL 
+            option=serverCert
+            state=absent
+  when: splunk_inputs_conf.SSL.serverCert is undefined
 
 # password
 
@@ -34,16 +48,13 @@
   ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
             section=SSL
             option=password
-            value={{ splunk_inputs_conf.SSL_password }}
+            value={{ splunk_inputs_conf.SSL.password }}
             state=present
-  when: splunk_inputs_conf.splunktcp_ssl is defined and 
-        splunk_inputs_conf.splunktcp_ssl == "enable"
+  when: splunk_inputs_conf.SSL.password is defined
 
-# SSL
-
-- name: Unset SSL (default)
+- name: Unset password (default)
   ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
             section=SSL
+            option=password
             state=absent
-  when: splunk_inputs_conf.splunktcp_ssl is defined and 
-        splunk_inputs_conf.splunktcp_ssl == "disable"
+  when: splunk_inputs_conf.SSL.password is undefined

@@ -1,0 +1,4 @@
+---
+- include: server_conf_license.xml
+- include: server_conf_general.xml
+- include: server_conf_clustering.xml
