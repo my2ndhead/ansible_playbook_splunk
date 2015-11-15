@@ -1,2 +1,4 @@
 ---
-- include: configure_inputs_conf.yml
+- include: inputs_conf_splunktcp.yml
+- include: inputs_conf_splunktcp-ssl.yml
+- include: inputs_conf_ssl.yml

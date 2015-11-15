@@ -1,2 +1,4 @@
 ---
-- include: configure_outputs_conf.yml
+- include: outputs_conf_defaultgroup.xml
+- include: outputs_conf_targetgroup.xml
+- include: outputs_conf_indexer_discovery.xml

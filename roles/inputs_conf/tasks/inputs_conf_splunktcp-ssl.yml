@@ -1,0 +1,22 @@
+---
+#####################################################################################################################
+# Configurations for Splunk inputs.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [splunktcp-ssl:<port>]
+#####################################################################################################################
+
+- name: Set splunktcp-ssl
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=splunktcp-ssl:{{ splunk_inputs_conf.splunktcp_ssl_port }}  
+            state=present
+  when: splunk_inputs_conf.splunktcp_ssl is defined and 
+        splunk_inputs_conf.splunktcp_ssl == "enable"
+
+- name: Unset splunktcp-ssl (default)
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=splunktcp-ssl:{{ splunk_inputs_conf.splunktcp_ssl_port }} 
+            state=absent
+  when: splunk_inputs_conf.splunktcp_ssl is defined and
+        splunk_inputs_conf.splunktcp_ssl == "disable"

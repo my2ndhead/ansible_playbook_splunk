@@ -1,2 +1,2 @@
 ---
-- include: configure_web_conf.yml
+- include: web_conf_settings.yml

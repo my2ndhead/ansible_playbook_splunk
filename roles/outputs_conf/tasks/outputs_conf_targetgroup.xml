@@ -7,23 +7,6 @@
 # [tcpout]
 #####################################################################################################################
 
-# defaultGroup
-
-- name: Set defaultGroup
-  ini_file: dest={{ splunk_conf_path }}/outputs.conf
-            section=tcpout
-            option=defaultGroup
-            value={{ splunk_outputs_conf.tcpout_defaultGroup }}
-            state=present
-  when: splunk_outputs_conf.tcpout_defaultGroup is defined
-
-- name: Unset defaultGroup (default)
-  ini_file: dest={{ splunk_conf_path }}/outputs.conf
-            section=tcpout
-            option=defaultGroup
-            state=absent
-  when: splunk_outputs_conf.tcpout_defaultGroup is undefined
-
 # targetGroup useAck
 
 - name: Set targetGroup useACK
