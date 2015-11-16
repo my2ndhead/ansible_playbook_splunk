@@ -4,7 +4,7 @@
 #####################################################################################################################
 
 #####################################################################################################################
-# [tcpout]
+# [indexer_discovery]
 #####################################################################################################################
 
 # indexer_discovery pass4SymmKey
@@ -17,7 +17,7 @@
             state=present
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.pass4SymmKey is defined
-  tags: indexer_discovery
+  tags: outputs_indexer_discovery_pass4SymmKey
 
 - name: Unset indexer_discovery pass4SymmKey (default)
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
@@ -26,7 +26,7 @@
             state=absent
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.pass4SymmKey is undefined
-  tags: indexer_discovery
+  tags: outputs_indexer_discovery_pass4SymmKey
 
 # indexer_discovery master_uri
 
@@ -39,8 +39,7 @@
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri is defined and
         splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri != "dynamic"
-  tags: indexer_discovery
-
+  tags: outputs_indexer_discovery_master_uri
 
 - name: Unset indexer_discovery master_uri (default)
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
@@ -49,4 +48,4 @@
             state=absent
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri is undefined
-  tags: indexer_discovery
+  tags: outputs_indexer_discovery_master_uri

@@ -25,7 +25,7 @@ splunk_web_conf:
 splunk_outputs_conf:
   tcpout:
     defaultGroup: production
-    target_groups: 
+    target_group: 
       staging:
         useACK: true
         server: server1:8089,server2:8089

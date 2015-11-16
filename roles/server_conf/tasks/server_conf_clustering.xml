@@ -16,6 +16,7 @@
             value={{ splunk_server_conf.clustering.mode }}
             state=present
   when: splunk_server_conf.clustering.mode is defined
+  tags: server_clustering_mode
 
 - name: Unset mode (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -24,6 +25,7 @@
             state=absent
   when: splunk_server_conf.clustering.mode is undefined or
         splunk_server_conf.clustering.mode == "disabled"
+  tags: server_clustering_mode
 
 # master_uri
 
@@ -35,6 +37,7 @@
             state=present
   when: splunk_server_conf.clustering.master_uri is defined and
         splunk_server_conf.clustering.master_uri == "dynamic"
+  tags: server_clustering_master_uri
 
 - name: Set master_uri (static)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -44,6 +47,7 @@
             state=present
   when: splunk_server_conf.clustering.master_uri is defined and
         splunk_server_conf.clustering.master_uri != "dynamic"
+  tags: server_clustering_master_uri
 
 - name: Unset master_uri (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -51,6 +55,7 @@
             option=master_uri
             state=absent
   when: splunk_server_conf.clustering.master_uri is undefined
+  tags: server_clustering_master_uri
 
 #  multisite
 
@@ -61,14 +66,16 @@
             value={{ splunk_server_conf.clustering.multisite }}
             state=present
   when: splunk_server_conf.clustering.multisite is defined
+  tags: server_clustering_multisite
 
-- name: Unset mode (default)
+- name: Unset multisite (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=mode
             state=absent
   when: splunk_server_conf.clustering.multisite is undefined or
         splunk_server_conf.clustering.multisite != true
+  tags: server_clustering_multisite
 
 # replication_factor
 
@@ -79,6 +86,7 @@
             value={{ splunk_server_conf.clustering.replication_factor }}
             state=present
   when: splunk_server_conf.clustering.replication_factor is defined
+  tags: server_clustering_replication_factor
 
 - name: Unset replication_factor (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -87,6 +95,7 @@
             state=absent
   when: splunk_server_conf.clustering.replication_factor is undefined or
         splunk_server_conf.clustering.replication_factor == 3
+  tags: server_clustering_replication_factor
 
 # site_replication_factor
 
@@ -97,6 +106,7 @@
             value={{ splunk_server_conf.clustering.site_replication_factor }}
             state=present
   when: splunk_server_conf.clustering.site_replication_factor is defined
+  tags: server_clustering_site_replication_factor
 
 - name: Unset site_replication_factor (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -105,6 +115,7 @@
             state=absent
   when: splunk_server_conf.clustering.site_replication_factor is undefined or
         splunk_server_conf.clustering.site_replication_factor == "origin:2,total:3"
+  tags: server_clustering_site_replication_factor
 
 # search_factor
 
@@ -115,6 +126,7 @@
             value={{ splunk_server_conf.clustering.search_factor }}
             state=present
   when: splunk_server_conf.clustering.search_factor is defined
+  tags: server_clustering_search_factor
 
 - name: Unset search_factor (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -123,6 +135,7 @@
             state=absent
   when: splunk_server_conf.clustering.search_factor is undefined or
         splunk_server_conf.clustering.search_factor == 2
+  tags: server_clustering_search_factor
 
 # available_sites
 
@@ -133,6 +146,7 @@
             value={{ splunk_server_conf.clustering.available_sites }}
             state=present
   when: splunk_server_conf.clustering.available_sites is defined
+  tags: server_clustering_available_sites
 
 - name: Unset available_sites (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -140,3 +154,5 @@
             option=available_sites
             state=absent
   when: splunk_server_conf.clustering.site_replication_factor is undefined
+  tags: server_clustering_available_sites
+

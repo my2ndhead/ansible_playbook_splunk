@@ -1,5 +1,5 @@
 ---
 - include: outputs_conf_touch.yml
-- include: outputs_conf_defaultgroup.yml
-- include: outputs_conf_targetgroup.yml
+- include: outputs_conf_tcpout_defaultgroup.yml
+- include: outputs_conf_tcpout_targetgroup.yml
 - include: outputs_conf_indexer_discovery.yml

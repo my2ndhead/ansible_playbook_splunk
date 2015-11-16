@@ -12,10 +12,11 @@
             section=splunktcp:{{ splunk_inputs_conf.splunktcp.port }} 
             state=present
   when: splunk_inputs_conf.splunktcp.port is defined
+  tags: inputs_splunktcp_port
 
 - name: Unset splunktcp (default)
   replace: dest="{{ splunk_conf_path }}/inputs.conf"
            regexp='\[splunktcp:\d+\]\n'
            replace=''
   when: splunk_inputs_conf.splunktcp.port is undefined
-
+  tags: inputs_splunktcp_port

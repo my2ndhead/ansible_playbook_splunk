@@ -1,0 +1,159 @@
+---
+#####################################################################################################################
+# Configurations for Splunk outputs.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [tcpout:<tcpout:target_group>]
+#####################################################################################################################
+
+# tcpout:target_group useAck
+
+- name: "Set tcpout:target_group useACK"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=useACK
+            value={{ item.value.useACK }}
+            state=present
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.useACK is defined and
+        splunk_outputs_conf.tcpout.target_group.{{ item.key }}.useACK == true
+  tags: output_tcpout.target_group_useAck
+
+
+- name: "Unset tcpout:target_group useACK (default)"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=useACK
+            state=absent
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.useACK is undefined
+  tags: output_tcpout.target_group_useAck
+
+# tcpout:target_group server
+
+- name: "Set tcpout:target_group server"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=server
+            value={{ item.value.server }}
+            state=present
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.server is defined
+  tags: output_tcpout.target_group_server
+ 
+- name: "Unset tcpout:target_group server (default)"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=server
+            state=absent
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.server is undefined
+  tags: output_tcpout.target_group_server
+
+# tcpout:target_group indexerDiscovery
+
+- name: "Set tcpout:target_group indexerDiscovery"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=indexerDiscovery
+            value={{ item.value.indexerDiscovery }}
+            state=present
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.indexerDiscovery is defined
+  tags: output_tcpout.target_group_indexerDiscovery
+
+- name: "Unset tcpout:target_group indexerDiscovery (default)"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=indexerDiscovery
+            state=absent
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.indexerDiscovery is undefined
+  tags: output_tcpout.target_group_indexerDiscovery
+
+# tcpout:target_group sslPassword
+  
+- name: "Set tcpout:target_group sslPassword"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=sslPassword
+            value={{ item.value.sslPassword }}
+            state=present
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslPassword is defined
+  tags: output_tcpout.target_group_sslPassword
+
+- name: "Unset tcpout:target_group sslPassword (default)"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=sslPassword
+            state=absent
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslPassword is undefined
+  tags: output_tcpout.target_group_sslPassword
+
+# tcpout:target_group sslCertPath
+ 
+- name: "Set tcpout:target_group sslCertPath"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=sslCertPath
+            value={{ item.value.sslCertPath }}
+            state=present
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslCertPath is defined
+  tags: output_tcpout.target_group_sslCertPath
+
+- name: "Unset tcpout:target_group sslCertPath (default)"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=sslCertPath
+            state=absent
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslCertPath is undefined
+  tags: output_tcpout.target_group_sslCertPath
+
+# tcpout:target_group sslRootCAPath
+
+- name: "Set tcpout:target_group sslRootCAPath"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=sslRootCAPath
+            value={{ item.value.sslRootCAPath }}
+            state=present
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslRootCAPath is defined
+  tags: output_tcpout.target_group_sslRootCAPath
+
+- name: "Unset tcpout:target_group sslRootCAPath (default)"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=sslRootCAPath
+            state=absent
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslRootCAPath is undefined
+  tags: output_tcpout.target_group_sslRootCAPath
+
+# tcpout:target_group sslVerifyServerCert
+
+- name: "Set tcpout:target_group sslVerifyServerCert"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=sslVerifyServerCert
+            value={{ item.value.sslVerifyServerCert }}
+            state=present
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert is defined and
+        splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert == true
+  tags: output_tcpout.target_group_sslVerifyServerCert
+
+- name: "Unset tcpout:target_group sslVerifyServerCert (default)"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout:{{ item.key }}
+            option=sslRootCAPath
+            state=absent
+  with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
+  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert is undefined or
+        splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert != true
+  tags: output_tcpout.target_group_sslVerifyServerCert
