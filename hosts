@@ -1,4 +1,16 @@
 [splunk_repository]
-localhost	ansible_connection=local
+localhost       ansible_connection=local
 
 [splunk_searchheads]
+searchhead.production cluster=production shcluster=production
+searchhead.staging cluster_label=staging shcluster_label=staging
+
+[splunk_indexers]
+indexer.production cluster_label=production	
+indexer.staging cluster_label=staging
+
+[splunk_licensemaster]
+searchhead
+
+[splunk_cluster_masternode]
+clustermasternode

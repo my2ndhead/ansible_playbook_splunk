@@ -3,7 +3,7 @@
 #####################################################################################################################
 # General Installation Variables
 #####################################################################################################################
-splunk_conf_path: /opt/splunk/etc/apps/IA-searchhead/default
+splunk_conf_path: /opt/splunk/etc/system/local
 
 #####################################################################################################################
 # Configurations for Splunk web.conf
@@ -26,20 +26,20 @@ splunk_outputs_conf:
   tcpout:
     defaultGroup: production
     target_groups: 
-      production:
+      staging:
         useACK: true
         server: server1:8089,server2:8089
         sslPassword: VerySecret
         sslCertPath: $SPLUNK_HOME/etc/auth/server.pem
         sslRootCAPath: $SPLUNK_HOME/etc/auth/ca.pem
         sslVerifyServerCert: true
-      staging:
+      production:
         useACK: true
-        indexerDiscovery: staging_cluster
+        indexerDiscovery: production
   indexer_discovery:
-    staging_cluster:
+    production:
       pass4SymmKey: SecretKey
-      master_uri: "https://127.0.0.1:8089"
+      master_uri: "https://clustermaster:8089"
 
 #####################################################################################################################
 # Configurations for Splunk server.conf
@@ -47,12 +47,12 @@ splunk_outputs_conf:
 
 splunk_server_conf:
   general:
-    site: site1
+    site: dynamic
     trustedIP: 127.0.0.1
   license:
-    master_uri: "https://licensemaster:8089"
+    master_uri: dynamic
   clustering:
-    mode: searchhead
+    mode: dynamic
     master_uri: "https://clustermaster:8089"
     pass4SymmKey: SecretKey
     multisite: true

@@ -9,13 +9,23 @@
 
 # master
 
-- name: Set master_uri
+- name: Set master_uri (dynamic)
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=license
             option=master_uri
-            value={{ splunk_server_conf.license.master_uri }}
+            value="https://{{ groups['splunk_licensemaster'][0] }}:8089"
             state=present
-  when: splunk_server_conf.license.master_uri is defined
+  when: splunk_server_conf.license.master_uri is defined and
+        splunk_server_conf.license.master_uri == "dynamic"
+
+- name: Set master_uri (static)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=license
+            option=master_uri
+            value="{{ splunk_server_conf.license.master_uri }}"
+            state=present
+  when: splunk_server_conf.license.master_uri is defined and
+        splunk_server_conf.license.master_uri != "dynamic"
 
 - name: Unset master_uri (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf

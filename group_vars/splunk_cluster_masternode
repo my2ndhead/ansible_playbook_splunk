@@ -38,10 +38,14 @@ splunk_web_conf:
 
 splunk_server_conf:
   general:
-    site: dynamic
+    site: site1
   license:
     master_uri: dynamic
   clustering:
-    mode: slave
-    master_uri: "https://clustermaster:8089"
+    mode: master
     pass4SymmKey: SecretKey
+    multisite: true
+    replication_factor: 3
+    site_replication_factor: "origin:2,total:3"
+    search_factor: 2
+    available_sites: "site1,site2"

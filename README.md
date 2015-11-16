@@ -1,4 +1,10 @@
 # ansible_splunk_playbook
 
 * Add hosts to hosts file
-* Run ansible-playbook -i hosts splunk.yml -vvv
+
+* Create group_vars template
+
+* Run playbooks
+ansible-playbook splunk_configure_searchheads.yml 
+ansible-playbook splunk_configure_indexer.yml 
+

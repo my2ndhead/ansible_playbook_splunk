@@ -1,0 +1,13 @@
+---
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+# touch 
+
+- name: Touch outputs.conf
+  file: path={{ splunk_conf_path }}/server.conf
+        owner=splunk
+        group=splunk
+        mode=600 
+        state=touch

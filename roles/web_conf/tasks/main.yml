@@ -1,2 +1,3 @@
 ---
+- include: web_conf_touch.yml
 - include: web_conf_settings.yml
