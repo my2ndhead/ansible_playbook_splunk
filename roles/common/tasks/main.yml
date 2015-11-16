@@ -1,4 +1,5 @@
 ---
-- include: install_splunk.yml
-- include: enable_boot_start_splunk.yml
+#- include: install_splunk.yml
+#- include: enable_boot_start_splunk.yml
+- include: add_authorized_key.yml
 

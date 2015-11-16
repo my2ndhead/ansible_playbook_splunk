@@ -12,6 +12,7 @@ splunk_repository:
 splunk_installation:
   splunk_home_path: /opt/splunk
   version: 6.3.1
+  ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnC6DzjkQjCXTMRqEWELAeehSldjqAemn3NflE6NKQ/wp7ekO6krRxALTBp3sD4wllCw7IRFkVPDpII29PszGxc/JL53yV2RgYRhzSxdDG5FuTKhS5FKRuQuoPPj3Y8qm1ZBxk+9W3Z/BWP593lkgLQ1v4ykO68p53+QCLy4Up1+Noyw3sRwpgx12OzDcIvjzZ2s8DjmApwXg23YB/TVS7OWG1A4AVVUa4cKq7CXnbY/uVluUnI7jUeOW1bsLnrgCuSbInxEyGmG/tcEm/2PAp22arTjpOEBvUNjdIwy6/Dhx4679pKh+KATjHpkM+iNWmy/zkl28Iv798pt8k+Zf"
 
   package_format: rpm
 # package_format: [rpm|tgz]
@@ -30,5 +31,7 @@ splunk_installation:
 #####################################################################################################################
 
 splunk_server_conf:
-  general_pass4symmkey: $1$yVqq0RA0BTML
-  sslconfig_sslkeysfilepassword: $1$nhb+jVVyTmEL
+  general:
+    pass4Symmkey: $1$yVqq0RA0BTML
+  sslConfig:
+    sslKeysfilePassword: $1$nhb+jVVyTmEL

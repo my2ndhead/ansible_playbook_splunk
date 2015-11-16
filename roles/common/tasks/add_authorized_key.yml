@@ -1,0 +1,7 @@
+---
+
+- name: Add private key to user splunk
+  authorized_key: user=splunk
+                  key="{{ splunk_installation.ssh_public_key }}"
+  when: splunk_installation.ssh_public_key is defined 
+                  

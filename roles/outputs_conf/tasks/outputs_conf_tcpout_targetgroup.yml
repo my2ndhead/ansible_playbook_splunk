@@ -36,7 +36,7 @@
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
             option=server
-            value={{ item.value.server }}
+            value={{ item.value.server | join(",") }}
             state=present
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
   when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.server is defined

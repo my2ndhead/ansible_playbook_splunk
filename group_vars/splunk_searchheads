@@ -28,7 +28,9 @@ splunk_outputs_conf:
     target_group: 
       staging:
         useACK: true
-        server: server1:8089,server2:8089
+        server: 
+          - "server1:9997"
+          - "server2:9997"
         sslPassword: VerySecret
         sslCertPath: $SPLUNK_HOME/etc/auth/server.pem
         sslRootCAPath: $SPLUNK_HOME/etc/auth/ca.pem
@@ -47,8 +49,11 @@ splunk_outputs_conf:
 
 splunk_server_conf:
   general:
+    pass4Symmkey: $1$yVqq0RA0BTML
     site: dynamic
     trustedIP: 127.0.0.1
+  sslConfig:
+    sslKeysfilePassword: $1$nhb+jVVyTmEL
   license:
     master_uri: dynamic
   clustering:
@@ -57,7 +62,16 @@ splunk_server_conf:
     pass4SymmKey: SecretKey
     multisite: true
     replication_factor: 3
-    site_replication_factor: "origin:2,total:3"
+    site_replication_factor: "origin:2, total:3"
     search_factor: 2 
-    available_sites: "site1,site2"
-    
+    available_sites:
+      - site1
+      - site2
+  replication_port:
+    port: 9888
+  replication_port_ssl:
+    port: 9888
+    rootCA: $SPLUNK_HOME/etc/auth/cacert.pem
+    serverCert: $SPLUNK_HOME/etc/auth/server.pem
+    password: $1$2lO4zAA+GjI
+

@@ -65,7 +65,8 @@
             option=multisite
             value={{ splunk_server_conf.clustering.multisite }}
             state=present
-  when: splunk_server_conf.clustering.multisite is defined
+  when: splunk_server_conf.clustering.multisite is defined or
+        splunk_server_conf.clustering.multisite == true
   tags: server_clustering_multisite
 
 - name: Unset multisite (default)
@@ -85,7 +86,9 @@
             option=replication_factor
             value={{ splunk_server_conf.clustering.replication_factor }}
             state=present
-  when: splunk_server_conf.clustering.replication_factor is defined
+  when: splunk_server_conf.clustering.replication_factor is defined or
+        splunk_server_conf.clustering.replication_factor != 3
+
   tags: server_clustering_replication_factor
 
 - name: Unset replication_factor (default)
@@ -103,9 +106,10 @@
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=site_replication_factor
-            value={{ splunk_server_conf.clustering.site_replication_factor }}
+            value="{{ splunk_server_conf.clustering.site_replication_factor }}"
             state=present
-  when: splunk_server_conf.clustering.site_replication_factor is defined
+  when: splunk_server_conf.clustering.site_replication_factor is defined or
+        splunk_server_conf.clustering.site_replication_factor != "origin:2, total:3"
   tags: server_clustering_site_replication_factor
 
 - name: Unset site_replication_factor (default)
@@ -114,7 +118,7 @@
             option=site_replication_factor
             state=absent
   when: splunk_server_conf.clustering.site_replication_factor is undefined or
-        splunk_server_conf.clustering.site_replication_factor == "origin:2,total:3"
+        splunk_server_conf.clustering.site_replication_factor == "origin:2, total:3"
   tags: server_clustering_site_replication_factor
 
 # search_factor
@@ -143,7 +147,7 @@
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=available_sites
-            value={{ splunk_server_conf.clustering.available_sites }}
+            value={{ splunk_server_conf.clustering.available_sites | join(",") }}
             state=present
   when: splunk_server_conf.clustering.available_sites is defined
   tags: server_clustering_available_sites

@@ -38,10 +38,20 @@ splunk_web_conf:
 
 splunk_server_conf:
   general:
+    pass4Symmkey: $1$yVqq0RA0BTML
     site: dynamic
+  sslConfig:
+    sslKeysfilePassword: $1$nhb+jVVyTmEL
   license:
     master_uri: dynamic
   clustering:
     mode: slave
     master_uri: "https://clustermaster:8089"
     pass4SymmKey: SecretKey
+  replication_port:
+    port: 9888
+  replication_port_ssl:
+    port: 9888
+    rootCA: $SPLUNK_HOME/etc/auth/cacert.pem
+    serverCert: $SPLUNK_HOME/etc/auth/server.pem
+    password: $1$2lO4zAA+GjI
