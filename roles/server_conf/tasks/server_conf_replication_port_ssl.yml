@@ -63,7 +63,8 @@
             section="replication_port-ssl://{{ splunk_server_conf.replication_port_ssl.port }}"
             option=serverCert
             state=absent
-  when: splunk_server_conf.replication_port_ssl.serverCert is undefined
+  when: splunk_server_conf.replication_port_ssl is defined and
+        splunk_server_conf.replication_port_ssl.serverCert is undefined
   tags: server_conf_replication_ssl_serverCert
 
 # password
@@ -82,6 +83,8 @@
             section="replication_port-ssl://{{ splunk_server_conf.replication_port_ssl.port }}"
             option=password
             state=absent
-  when: splunk_server_conf.replication_port_ssl.password is undefined
+  when: splunk_server_conf.replication_port_ssl is defined and
+        splunk_server_conf.replication_port_ssl.password is undefined
+      
   tags: server_conf_replication_ssl_password
 
