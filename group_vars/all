@@ -21,17 +21,14 @@ splunk_installation:
 # package_url: http://download.splunk.com/products/splunk/releases/6.3.1/splunk/linux/splunk-6.3.1-f3e41e4b37b2-Linux-x86_64.tgz
   package_file: splunk-6.3.1-f3e41e4b37b2-linux-2.6-x86_64.rpm
 # package_file: splunk-6.3.1-f3e41e4b37b2-Linux-x86_64.tgz
+  remote_package_path: /tmp
+  delete_package_after_install: false
 
   admin_password: verysecret
 
   splunk_secret: 9uaY9Z02G69pWDMd6lUQGRISmgoRllMloZTsUf3EN/aV4Tp2F5EZynoNYEyEakTrrFhnUrti/f23DdziWTGU6WGJkPnJ07uxYDByH0dLKMjWjpPGxeOZ5WHt3D3dF5qyryO27KBWJ3ZWBMfUow85cX/0RHRIQv3C28q8R7m17YUVhsv6b8CVfG/kWIVqTdpcR.jElzKYv75X2GdRgvLyBDWLC7KplnOgmaiZ0bfpaNlEV.Yp4acowkHqH4USRb
-
-#####################################################################################################################
-# Configurations for Splunk server.conf
-#####################################################################################################################
-
-splunk_server_conf:
-  general:
-    pass4Symmkey: $1$yVqq0RA0BTML
-  sslConfig:
-    sslKeysfilePassword: $1$nhb+jVVyTmEL
+  
+  firewalld_open_splunkd: true
+  firewalld_open_splunkweb: true
+  firewalld_open_splunktcp: true
+  firewalld_open_splunkreplication: true

@@ -1,36 +1,43 @@
 ---
 
 - name: Create Splunk unix group
-  group: name=splunk state=present
+  group: name=splunk
+         state=present
   when: splunk_installation.package_format != "rpm"
 
 - name: Create Splunk unix user
-  user: name=splunk group=splunk state=present comment="Splunk Server" shell="/bin/bash" home="/opt/splunk" password="!!"
+  user: name=splunk 
+        group=splunk
+        state=present
+        comment="Splunk Server"
+        shell="/bin/bash"
+        home="/opt/splunk"
+        password="!!"
   when: splunk_installation.package_format != "rpm"
 
 - name: Copy Splunk package
-  copy: src="{{ splunk_repository.repository_root }}/packages/{{ splunk_installation.package_file }}" dest="/tmp/{{ splunk_installation.package_file }}" mode=600
+  copy: src="{{ splunk_repository.repository_root }}/packages/{{ splunk_installation.package_file }}"
+        dest="/{{ splunk_installation.remote_package_path }}/{{ splunk_installation.package_file }}"
+        mode=600
 
 - name: Install Splunk package from rpm
-  yum: name="/tmp/{{ splunk_installation.package_file }}" state=present
+  yum: name="{{ splunk_installation.remote_package_path }}/{{ splunk_installation.package_file }}" 
+       state=present
   when: splunk_installation.package_format == "rpm"
 
 - name: Install Splunk package from tgz
-  unarchive: src="/tmp/{{ splunk_installation.package_file }}" dest=/opt copy=no
+  unarchive: src="{{ splunk_installation.remote_package_path }}/{{ splunk_installation.package_file }}"
+             dest=/opt
+             copy=no
   when:  splunk_installation.package_format == "tgz"
 
 - name: Remove Splunk package
-  command: rm /tmp/{{ splunk_installation.package_file }}
+  command: rm "{{ splunk_installation.remote_package_path }}/{{ splunk_installation.package_file }}"
+  when: splunk_installation.delete_package_after_install != false
 
 - name: Set permissions for $SPLUNK_HOME 
-  file: path=/opt/splunk owner=splunk group=splunk recurse=yes
-  when:  splunk_installation.package_format == "tgz"
-
-- name: Create common splunk.secret
-  template: src=etc/auth/splunk.secret.j2 dest=/opt/splunk/etc/auth/splunk.secret
-
-- name: Set permissions for splunk.secret
-  file: path=/opt/splunk/etc/auth/splunk.secret mode=0400 owner=splunk group=splunk
-
-- name: Change default password
-  command: /opt/splunk/bin/splunk edit user admin -password '{{ splunk_installation.admin_password }}' -role admin -auth admin:changeme
+  file: path="{{ splunk_installation.splunk_home_path }}" 
+        owner=splunk
+        group=splunk
+        recurse=yes
+  when: splunk_installation.package_format == "tgz"

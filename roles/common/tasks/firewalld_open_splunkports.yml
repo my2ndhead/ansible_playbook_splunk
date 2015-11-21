@@ -1,0 +1,25 @@
+---
+
+- name: open splunkd port on firewalld
+  firewalld: port=8089/tcp
+             permanent=true
+             state=enabled 
+  when: splunk_installation.firewalld_open_splunkd==true
+
+- name: open splunkweb port on firewalld
+  firewalld: port=8000/tcp
+             permanent=true
+             state=enabled
+  when: splunk_installation.firewalld_open_splunkweb==true
+
+- name: open splunktcp port on firewalld
+  firewalld: port=9997/tcp
+             permanent=true
+             state=enabled
+  when: splunk_installation.firewalld_open_splunktcp==true
+
+- name: open splunkreplication port on firewalld
+  firewalld: port=9888/tcp
+             permanent=true
+             state=enabled
+  when: splunk_installation.firewalld_open_splunkreplication==true
