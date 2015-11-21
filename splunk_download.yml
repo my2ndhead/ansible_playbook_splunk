@@ -2,4 +2,8 @@
 -  hosts: splunk_repository
    tasks:
    - name: Download Splunk package
-     get_url: url={{ splunk_installation.package_url }} dest={{ splunk_repository.repository_root }}/packages mode=600
+     get_url: url={{ splunk_installation.package_url }} 
+              dest={{ splunk_repository.repository_root }}/packages 
+              owner={{ splunk_repository.repository_owner }} 
+              group={{ splunk_repository.repository_group }} 
+              mode=644
