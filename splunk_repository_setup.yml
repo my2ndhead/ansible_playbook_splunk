@@ -1,15 +1,18 @@
 ---
 - hosts: splunk_repository
-  remote_user: root
+  user: root
   tasks:
   - name: Create repository root directory
-    command: mkdir {{ splunk_repository.repository_root }} creates={{ splunk_repository.repository_root }}
+    file: path="{{ splunk_repository.repository_root }}"
+          state=directory
   
-  - name: Create repository apps pdirectory
-    command: mkdir {{ splunk_repository.repository_root }}/apps creates={{ splunk_repository.repository_root }}/apps
+  - name: Create repository apps directory
+    file: path="{{ splunk_repository.repository_root }}/apps"
+          state=directory
 
   - name: Create repository packages directory
-    command: mkdir {{ splunk_repository.repository_root }}/packages creates={{ splunk_repository.repository_root }}/packages
+    file: path="{{ splunk_repository.repository_root }}/packages"
+          state=directory
 
   - name: Set repository owner/group
     file: path={{ splunk_repository.repository_root }} recurse=yes owner={{ splunk_repository.repository_owner }} group={{ splunk_repository.repository_group }}
