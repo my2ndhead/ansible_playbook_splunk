@@ -26,6 +26,7 @@ deploymentserver.private.domain
 dmc.private.domain
 
 [splunk_site0]
+masternode.private.domain
 dmc.private.domain
 
 [splunk_site1]
@@ -34,9 +35,10 @@ searchhead2.private.domain
 indexer1.private.domain
 
 [splunk_site2]
+searchhead3.private.domain
 indexer2.private.domain
 
-[splunk_sh_cluter_production]
+[splunk_shcluster_production]
 deployer.private.domain
 searchhead1.private.domain
 searchhead2.private.domain
