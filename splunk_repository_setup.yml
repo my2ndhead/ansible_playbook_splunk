@@ -15,8 +15,12 @@
           state=directory
 
   - name: Set repository owner/group
-    file: path={{ splunk_repository.repository_root }} recurse=yes owner={{ splunk_repository.repository_owner }} group={{ splunk_repository.repository_group }}
+    file: path={{ splunk_repository.repository_root }} 
+          recurse=yes 
+          owner={{ splunk_repository.repository_owner }} 
+          group={{ splunk_repository.repository_group }}
 
-  - name: Set repository owner/group
-    file: path={{ splunk_repository.repository_root }} mode=750
+  - name: Set repository directory mode
+    file: path={{ splunk_repository.repository_root }} 
+          mode=750
 

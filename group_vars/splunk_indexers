@@ -10,8 +10,6 @@ splunk_conf_path: /opt/splunk/etc/system/local
 #####################################################################################################################
 
 splunk_inputs_conf:
-  splunktcp: 
-    port: 9997
   splunktcp_ssl: 
     port: 9997
   SSL:
@@ -26,10 +24,7 @@ splunk_inputs_conf:
 splunk_web_conf:
   settings:
     enableSplunkWebSSL: true
-    httpport: 8000
     startwebserver: 0
-    privKeyPath: etc/auth/splunkweb/privkey.pem
-    caCertPath: etc/auth/splunkweb/cert.pem
     updateCheckerBaseURL: 0
 
 #####################################################################################################################
@@ -48,8 +43,6 @@ splunk_server_conf:
     mode: slave
     master_uri: "https://clustermaster:8089"
     pass4SymmKey: SecretKey
-  replication_port:
-    port: 9888
   replication_port_ssl:
     port: 9888
     rootCA: $SPLUNK_HOME/etc/auth/cacert.pem

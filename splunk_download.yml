@@ -1,9 +1,21 @@
 ---
--  hosts: splunk_repository
-   tasks:
-   - name: Download Splunk package
-     get_url: url={{ splunk_installation.package_url }} 
-              dest={{ splunk_repository.repository_root }}/packages 
-              owner={{ splunk_repository.repository_owner }} 
-              group={{ splunk_repository.repository_group }} 
-              mode=644
+- hosts: splunk_repository
+  tasks:
+  - name: Download Splunk rpm packages
+    get_url: url="{{ item.value.url }}"
+             dest={{ splunk_repository.repository_root }}/packages 
+             owner={{ splunk_repository.repository_owner }} 
+             group={{ splunk_repository.repository_group }} 
+             mode=644
+    with_dict: "{{ splunk_packages.linux_64_rpm }}"
+    when: splunk_installation.package_format == "rpm"
+
+  - name: Download Splunk tgz packages
+    get_url: url="{{ item.value.url }}"
+             dest={{ splunk_repository.repository_root }}/packages
+             owner={{ splunk_repository.repository_owner }}
+             group={{ splunk_repository.repository_group }}
+             mode=644
+    with_dict: "{{ splunk_packages.linux_64_tgz }}"
+    when: splunk_installation.package_format == "tgz"
+

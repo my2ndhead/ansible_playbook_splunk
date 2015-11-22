@@ -54,6 +54,10 @@ splunk_server_conf:
      * List of available sites
      * Defaults to an empty string. So if multisite is turned on this needs to be explicitly set
 
+     cluster_label: [dynamic|<string>]
+     * Defaults to an empty string.
+     * Use dynamic to set automatically
+
   replication_port:
     port: <port>
     * Replication port

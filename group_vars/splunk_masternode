@@ -49,3 +49,4 @@ splunk_server_conf:
     site_replication_factor: "origin:2,total:3"
     search_factor: 2
     available_sites: "site1,site2"
+    cluster_label: dynamic

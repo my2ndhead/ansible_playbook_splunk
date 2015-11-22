@@ -1,18 +1,11 @@
 ---
 #####################################################################################################################
-# Global Variables
-#####################################################################################################################
-
-splunk_repository:
-  repository_root: /var/lib/splunk_repository
-
-#####################################################################################################################
 # Installation Variables
 #####################################################################################################################
 splunk_installation:
   splunk_home_path: /opt/splunk
   version: 6.3.1
-  ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnC6DzjkQjCXTMRqEWELAeehSldjqAemn3NflE6NKQ/wp7ekO6krRxALTBp3sD4wllCw7IRFkVPDpII29PszGxc/JL53yV2RgYRhzSxdDG5FuTKhS5FKRuQuoPPj3Y8qm1ZBxk+9W3Z/BWP593lkgLQ1v4ykO68p53+QCLy4Up1+Noyw3sRwpgx12OzDcIvjzZ2s8DjmApwXg23YB/TVS7OWG1A4AVVUa4cKq7CXnbY/uVluUnI7jUeOW1bsLnrgCuSbInxEyGmG/tcEm/2PAp22arTjpOEBvUNjdIwy6/Dhx4679pKh+KATjHpkM+iNWmy/zkl28Iv798pt8k+Zf"
+  ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnC6DzjkQjCXTMRqEWELAeehSldjqAemn3NflE6NKQ/wp7ekO6krRxALTBp3sD4wllCw7IRFkVPDpII29PszGxc/JL53yV2RgYRhzSxdDG5FuTKhS5FKRuQuoPPj3Y8qm1ZBxk+9W3Z/BWP593lkgLQ1v4ykO68p53+QCLy4Up1+Noyw3sRwpgx12OzDcIvjzZ2s8DjmApwXg23YB/TVS7OWG1A4AVVUa4cKq7CXnbY/uVluUnI7jUeOW1bsLnrgCuSbInxEyGmG/tcEm/2PAp22arTjpOEBvUNjdIwy6/Dhx4679pKh+KATjHpkM+iNWmy/zkl28Iv798pt8k+Zf7 root@linuxmint"
 
   package_format: rpm
 # package_format: [rpm|tgz]
