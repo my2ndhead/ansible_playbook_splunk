@@ -15,7 +15,7 @@
             value={{ splunk_web_conf.settings.enableSplunkWebSSL }}
             state=present
   when: splunk_web_conf.settings.enableSplunkWebSSL is defined and
-        splunk_web_conf.settings.enableSplunkWebSSL != 1
+        splunk_web_conf.settings.enableSplunkWebSSL == true
 
 - name: Unset enableSplunkWebSSL (default)
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
@@ -23,7 +23,7 @@
             option=enableSplunkWebSSL
             state=absent
   when:  splunk_web_conf.settings.enableSplunkWebSSL is undefined or 
-         splunk_web_conf.settings.enableSplunkWebSSL == 1
+         splunk_web_conf.settings.enableSplunkWebSSL == false
 
 # httpport
 

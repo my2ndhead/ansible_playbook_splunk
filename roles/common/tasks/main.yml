@@ -5,3 +5,5 @@
 - include: change_default_password.yml
 - include: add_authorized_key.yml
 - include: firewalld_open_splunkports.yml
+- include: splunk_ftb.yml
+- include: fetch_distserverkeys.yml

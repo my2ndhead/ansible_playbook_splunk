@@ -1,0 +1,8 @@
+---
+
+- name: Fetch distServerKeys from all Servers
+  fetch: src="{{ splunk_installation.splunk_home_path }}/etc/auth//distServerKeys/trusted.pem"
+         dest="{{ splunk_repository.repository_root }}/distServerKeys/{{ ansible_fqdn }}/trusted.pem"
+         flat=yes
+         fail_on_missing=yes 
+  tags: splunk_fetch_distserverkeys

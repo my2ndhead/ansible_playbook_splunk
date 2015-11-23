@@ -41,7 +41,7 @@ splunk_server_conf:
     master_uri: dynamic
   clustering:
     mode: slave
-    master_uri: "https://clustermaster:8089"
+    master_uri: dynamic
     pass4SymmKey: SecretKey
   replication_port_ssl:
     port: 9888

@@ -14,6 +14,10 @@
     file: path="{{ splunk_repository.repository_root }}/packages"
           state=directory
 
+  - name: Create distServerKeys directory
+    file: path="{{ splunk_repository.repository_root }}/distServerKeys"
+          state=directory
+
   - name: Set repository owner/group
     file: path={{ splunk_repository.repository_root }} 
           recurse=yes 

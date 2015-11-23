@@ -12,10 +12,6 @@ splunk_conf_path: /opt/splunk/etc/system/local
 splunk_web_conf:
   settings:
     enableSplunkWebSSL: True
-    httpport: 8000
-    startwebserver: 1
-    privKeyPath: etc/auth/splunkweb/privkey.pem
-    caCertPath: etc/auth/splunkweb/cert.pem
     updateCheckerBaseURL: 0
 
 #####################################################################################################################
@@ -26,18 +22,13 @@ splunk_outputs_conf:
   tcpout:
     defaultGroup: production
     target_group: 
-      staging:
-        useACK: true
-        server: 
-          - "server1:9997"
-          - "server2:9997"
-        sslPassword: VerySecret
-        sslCertPath: $SPLUNK_HOME/etc/auth/server.pem
-        sslRootCAPath: $SPLUNK_HOME/etc/auth/ca.pem
-        sslVerifyServerCert: true
       production:
         useACK: true
         indexerDiscovery: production
+        sslPassword: password
+        sslCertPath: $SPLUNK_HOME/etc/auth/server.pem
+        sslRootCAPath: $SPLUNK_HOME/etc/auth/ca.pem
+        sslVerifyServerCert: true
   indexer_discovery:
     production:
       pass4SymmKey: SecretKey
@@ -51,27 +42,11 @@ splunk_server_conf:
   general:
     pass4Symmkey: $1$yVqq0RA0BTML
     site: dynamic
-    trustedIP: 127.0.0.1
   sslConfig:
     sslKeysfilePassword: $1$nhb+jVVyTmEL
   license:
     master_uri: dynamic
   clustering:
-    mode: dynamic
-    master_uri: "https://clustermaster:8089"
-    pass4SymmKey: SecretKey
-    multisite: true
-    replication_factor: 3
-    site_replication_factor: "origin:2, total:3"
-    search_factor: 2 
-    available_sites:
-      - site1
-      - site2
-  replication_port:
-    port: 9888
-  replication_port_ssl:
-    port: 9888
-    rootCA: $SPLUNK_HOME/etc/auth/cacert.pem
-    serverCert: $SPLUNK_HOME/etc/auth/server.pem
-    password: $1$2lO4zAA+GjI
-
+    mode: searchhead
+    master_uri: dynamic
+    pass4SymmKey: changeme

@@ -1,0 +1,9 @@
+- name: Configure splunk dmc
+  hosts: splunk_dmc
+  user: splunk
+
+  roles:
+#    - dmc
+    - web_conf
+    - outputs_conf
+    - server_conf

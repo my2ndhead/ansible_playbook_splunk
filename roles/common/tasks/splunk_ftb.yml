@@ -1,0 +1,11 @@
+---
+
+- name: First Time Boot Splunk
+  service: name=splunk
+           state=started
+  tags: splunk_ftb_start
+
+- name: Stop Splunk
+  service: name=splunk
+           state=stopped
+  tags: splunk_ftb_stop
