@@ -1,0 +1,2 @@
+---
+- include: distribute_distsearch_trustedkey.yml

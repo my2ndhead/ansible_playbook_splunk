@@ -3,7 +3,8 @@
   user: splunk
 
   roles:
-#    - dmc
     - web_conf
     - outputs_conf
     - server_conf
+    - distsearch_conf
+    - distributed_search

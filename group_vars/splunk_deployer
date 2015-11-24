@@ -11,7 +11,7 @@ splunk_conf_path: /opt/splunk/etc/system/local
 
 splunk_web_conf:
   settings:
-    enableSplunkWebSSL: True
+    enableSplunkWebSSL: 1
     updateCheckerBaseURL: 0
 
 #####################################################################################################################
@@ -28,10 +28,9 @@ splunk_outputs_conf:
         sslPassword: password
         sslCertPath: $SPLUNK_HOME/etc/auth/server.pem
         sslRootCAPath: $SPLUNK_HOME/etc/auth/ca.pem
-        sslVerifyServerCert: true
   indexer_discovery:
     production:
-      pass4SymmKey: SecretKey
+      pass4SymmKey: changeme
       master_uri: dynamic
 
 #####################################################################################################################
@@ -40,13 +39,6 @@ splunk_outputs_conf:
 
 splunk_server_conf:
   general:
-    pass4Symmkey: $1$yVqq0RA0BTML
-    site: dynamic
-  sslConfig:
-    sslKeysfilePassword: $1$nhb+jVVyTmEL
+    site: site0
   license:
     master_uri: dynamic
-  clustering:
-    mode: searchhead
-    master_uri: dynamic
-    pass4SymmKey: changeme

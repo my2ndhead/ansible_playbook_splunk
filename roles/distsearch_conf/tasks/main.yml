@@ -1,0 +1,4 @@
+---
+- include: distsearch_conf_touch.yml
+- include: distsearch_conf_distributedSearch.yml
+

@@ -1,0 +1,14 @@
+---
+#####################################################################################################################
+# Configurations for Splunk distsearch.conf
+#####################################################################################################################
+
+# touch
+
+- name: Touch distsearch.conf
+  file: path={{ splunk_conf_path }}/distsearch.conf
+        owner=splunk
+        group=splunk
+        mode=600
+        state=touch
+
