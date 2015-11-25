@@ -1,0 +1,30 @@
+---
+#####################################################################################################################
+# Configurations for Splunk inputs.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [SSL]
+#####################################################################################################################
+
+# rootCA
+
+- name: Set rootCA
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=SSL
+            option=rootCA 
+            value={{ splunk_inputs_conf.SSL.rootCA }}
+            state=present
+  when: splunk_inputs_conf.SSL.rootCA is defined
+  tags: 
+    - inputs_SSL_rootCA
+
+- name: Unset rootCA (default)
+  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
+            section=SSL 
+            option=rootCA
+            state=absent
+  when: splunk_inputs_conf.SSL.rootCA is undefined
+  tags:  
+    - inputs_SSL_rootCA
+

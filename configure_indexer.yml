@@ -1,0 +1,8 @@
+- name: Configure splunk indexers
+  hosts: indexer
+  user: splunk
+
+  roles:
+    - web_conf
+    - inputs_conf
+    - server_conf

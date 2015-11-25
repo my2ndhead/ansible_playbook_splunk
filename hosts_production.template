@@ -1,56 +1,56 @@
-[splunk_repository]
+[repository]
 localhost       ansible_connection=local
 
-[splunk_shcmember]
+[shcmember]
 searchhead1.private.domain
 searchhead2.private.domain
 searchhead3.private.domain
 
-[splunk_searchhead]
+[searchhead]
 searchhead.private.domain
 
-[splunk_indexer]
+[indexer]
 indexer1.private.domain
 indexer2.private.domain
 
-[splunk_licensemaster]
+[licensemaster]
 licensemaster.private.domain
 
-[splunk_deployer]
+[deployer]
 deployer.private.domain
 
-[splunk_masternode]
+[masternode]
 masternode.private.domain
 
-[splunk_deploymentserver]
+[deploymentserver]
 deploymentserver.private.domain
 
-[splunk_dmc]
+[dmc]
 dmc.private.domain
 
-[splunk_site0]
+[site0]
 masternode.private.domain
 dmc.private.domain
 
-[splunk_site1]
+[site1]
 searchhead1.private.domain
 searchhead2.private.domain
 indexer1.private.domain
 
-[splunk_site2]
+[site2]
 searchhead3.private.domain
 indexer2.private.domain
 
-[splunk_shcluster]
+[shcluster]
 deployer.private.domain
 searchhead1.private.domain
 searchhead2.private.domain
 searchhead3.private.domain
 
-[splunk_cluster]
+[cluster]
 masternode.private.domain
 indexer1.private.domain
 indexer2.private.domain
 
-[splunk_heavyforwarder]
+[heavyforwarder]
 heavyforwarder1.private.domain

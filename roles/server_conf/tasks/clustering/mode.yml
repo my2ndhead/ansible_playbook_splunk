@@ -1,0 +1,31 @@
+---
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [clustering]
+#####################################################################################################################
+
+# mode
+
+- name: Set mode
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=clustering
+            option=mode
+            value={{ splunk_server_conf.clustering.mode }}
+            state=present
+  when: splunk_server_conf.clustering.mode is defined
+  tags: 
+    - server_clustering_mode
+
+- name: Unset mode (default)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=clustering
+            option=mode
+            state=absent
+  when: splunk_server_conf.clustering.mode is undefined or
+        splunk_server_conf.clustering.mode == "disabled"
+  tags: 
+    - server_clustering_mode
+

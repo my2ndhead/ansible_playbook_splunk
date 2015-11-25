@@ -1,0 +1,42 @@
+---
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [shclustering]
+#####################################################################################################################
+
+# mgmt_uri
+
+- name: Set mgmt_uri (dynamic)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=shclustering
+            option=mgmt_uri
+            value="https://{{ inventory_hostname }}:8089"
+            state=present
+  when: splunk_server_conf.shclustering.mgmt_uri is defined and
+        splunk_server_conf.shclustering.mgmt_uri == "dynamic"
+  tags:
+    - server_shclustering_mgmt_uri
+
+- name: Set mgmt_uri (static)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=shclustering
+            option=mgmt_uri
+            value={{ splunk_server_conf.shclustering.mgmt_uri }}
+            state=present
+  when: splunk_server_conf.shclustering.mgmt_uri is defined and
+        splunk_server_conf.shclustering.mgmt_uri != "dynamic"
+  tags:
+    - server_shclustering_mgmt_uri
+
+- name: Unset mgmt_uri (default)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=clustering
+            option=master_uri
+            state=absent
+  when: splunk_server_conf.shclustering.mgmt_uri is undefined
+  tags:
+    - server_shclustering_mgmt_uri
+

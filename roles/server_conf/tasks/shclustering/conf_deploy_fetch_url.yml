@@ -1,0 +1,42 @@
+---
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [shclustering]
+#####################################################################################################################
+
+# conf_deploy_fetch_url
+
+- name: Set shclustering conf_deploy_fetch_url (dynamic)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=shclustering
+            option=conf_deploy_fetch_url
+            value="https://{{ groups['deployer'][0] }}:8089"
+            state=present
+  when: splunk_server_conf.shclustering.conf_deploy_fetch_url is defined and
+        splunk_server_conf.shclustering.conf_deploy_fetch_url == "dynamic"
+  tags:
+    - server_shclustering_conf_deploy_fetch_url
+
+- name: Set shclustering conf_deploy_fetch_url (static)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=shclustering
+            option=conf_deploy_fetch_url
+            value={{ splunk_server_conf.shclustering.conf_deploy_fetch_url }}
+            state=present
+  when: splunk_server_conf.shclustering.conf_deploy_fetch_url is defined and
+        splunk_server_conf.shclustering.conf_deploy_fetch_url != "dynamic"
+  tags:
+    - server_shclustering_conf_deploy_fetch_url
+
+- name: Unset shclustering conf_deploy_fetch_url
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=shclustering
+            option=conf_deploy_fetch_url
+            state=absent
+  when: splunk_server_conf.shclustering.conf_deploy_fetch_url is undefined
+  tags:
+    - server_shclustering_conf_deploy_fetch_url
+

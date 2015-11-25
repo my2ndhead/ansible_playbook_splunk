@@ -1,3 +1,9 @@
 ---
-- include: web_conf_touch.yml
-- include: web_conf_settings.yml
+- include: touch.yml
+- include: settings/caCertPath.yml
+- include: settings/enableSplunkWebSSL.yml
+- include: settings/httpport.yml
+- include: settings/privKeyPath.yml
+- include: settings/startwebserver.yml
+- include: settings/updateCheckerBaseURL.yml  
+

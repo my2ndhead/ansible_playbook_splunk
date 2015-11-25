@@ -1,0 +1,8 @@
+- name: Configure splunk deployer
+  hosts: deployer
+  user: splunk
+
+  roles:
+    - web_conf
+    - outputs_conf
+    - server_conf

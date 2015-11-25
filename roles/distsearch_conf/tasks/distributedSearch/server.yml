@@ -1,0 +1,25 @@
+---
+#####################################################################################################################
+# Configurations for Splunk distsearch.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [distributedSearch]
+#####################################################################################################################
+
+# server
+
+- name: "Set server" 
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section=distributedSearch
+            option=servers
+            value="{{ splunk_distsearch_conf.distributedSearch.servers | create_distsearch_servers  }}"
+            state=present
+  when: splunk_distsearch_conf.distributedSearch.servers is defined
+
+- name: "Unset server (default)"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section=distributedSearch
+            option=server
+            state=absent
+  when: splunk_distsearch_conf.distributedSearch.servers is undefined

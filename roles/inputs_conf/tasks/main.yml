@@ -1,4 +1,6 @@
 ---
-- include: inputs_conf_splunktcp.yml
-- include: inputs_conf_splunktcp_ssl.yml
-- include: inputs_conf_ssl.yml
+- include: splunktcp/port.yml
+- include: splunktcp_ssl/port.yml
+- include: SSL/password.yml
+- include: SSL/rootCA.yml
+- include: SSL/serverCert.yml

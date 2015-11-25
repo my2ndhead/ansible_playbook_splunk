@@ -1,0 +1,8 @@
+- name: Configure splunk shcmember
+  hosts: shcmember
+  user: splunk
+
+  roles:
+    - web_conf
+    - outputs_conf
+    - server_conf

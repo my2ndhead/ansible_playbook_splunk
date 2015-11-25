@@ -1,0 +1,32 @@
+---
+#####################################################################################################################
+# Configurations for Splunk outputs.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [indexer_discovery]
+#####################################################################################################################
+
+# indexer_discovery pass4SymmKey
+
+- name: Set indexer_discovery pass4SymmKey
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=indexer_discovery:{{ item.key }}
+            option=pass4SymmKey
+            value={{ item.value.pass4SymmKey }}
+            state=present
+  with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
+  when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.pass4SymmKey is defined
+  tags: 
+    - outputs_indexer_discovery_pass4SymmKey
+
+- name: Unset indexer_discovery pass4SymmKey (default)
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=indexer_discovery:{{ item.key }}
+            option=pass4SymmKey
+            state=absent
+  with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
+  when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.pass4SymmKey is undefined
+  tags: 
+    - outputs_indexer_discovery_pass4SymmKey
+

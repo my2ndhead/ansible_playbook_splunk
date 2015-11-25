@@ -1,10 +1,26 @@
 ---
-- include: server_conf_touch.xml
-- include: server_conf_sslconfig.xml
-- include: server_conf_license.xml
-- include: server_conf_general.xml
-- include: server_conf_clustering.xml
-- include: server_conf_shclustering.xml
-- include: server_conf_replication_port.yml
-- include: server_conf_replication_port_ssl.yml
-- include: server_conf_diskUsage.xml
+- include: touch.xml
+- include: clustering/available_sites.yml
+- include: clustering/cluster_label.yml
+- include: clustering/master_uri.yml
+- include: clustering/mode.yml
+- include: clustering/multisite.yml
+- include: clustering/replication_factor.yml
+- include: clustering/search_factor.yml
+- include: clustering/site_replication_factor.yml
+- include: diskUsage/minFreeSpace.yml
+- include: general/pass4SymmKey.yml
+- include: general/site.yml
+- include: general/trustedIP.yml
+- include: license/master_uri.yml
+- include: replication_port/port.yml
+- include: replication_port-ssl/port.yml
+- include: shclustering/conf_deploy_fetch_url.yml
+- include: shclustering/election.yml
+- include: shclustering/id.yml
+- include: shclustering/mgmt_uri.yml
+- include: shclustering/pass4SymmKey.yml
+- include: shclustering/replication_factor.yml
+- include: shclustering/shcluster_label.yml
+- include: sslConfig/sslKeysfilePassword.yml
+

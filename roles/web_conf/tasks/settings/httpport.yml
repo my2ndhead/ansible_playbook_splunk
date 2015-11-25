@@ -1,0 +1,28 @@
+---
+#####################################################################################################################
+# Configurations for Splunk web.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [settings]
+#####################################################################################################################
+
+# httpport
+
+- name: Set httpport
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=httpport
+            value={{ splunk_web_conf.settings.httpport }}
+            state=present
+  when: splunk_web_conf.settings.httpport is defined and 
+        splunk_web_conf.settings.httpport != 8000
+
+- name: Unset httpport (default)
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=httpport
+            state=absent
+  when: splunk_web_conf.settings.httpport is undefined or
+        splunk_web_conf.settings.httpport == "8000"
+

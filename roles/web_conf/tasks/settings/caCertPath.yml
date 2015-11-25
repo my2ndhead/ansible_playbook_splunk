@@ -1,0 +1,27 @@
+---
+#####################################################################################################################
+# Configurations for Splunk web.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [settings]
+#####################################################################################################################
+
+# caCertPath
+
+- name: Set caCertPath
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=caCertPath
+            value={{ splunk_web_conf.settings.caCertPath }}
+            state=present
+  when: splunk_web_conf.settings.caCertPath is defined and
+        splunk_web_conf.settings.caCertPath != "etc/auth/splunkweb/cert.pem"
+
+- name: Unset caCertPath (default)
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=caCertPath
+            state=absent
+  when: splunk_web_conf.settings.caCertPath is undefined or
+        splunk_web_conf.settings.caCertPath == "etc/auth/splunkweb/cert.pem"

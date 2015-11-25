@@ -1,0 +1,8 @@
+- name: Configure splunk licensemaster
+  hosts: licensemaster
+  user: splunk
+
+  roles:
+    - web_conf
+    - outputs_conf
+    - server_conf

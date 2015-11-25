@@ -1,0 +1,27 @@
+---
+#####################################################################################################################
+# Configurations for Splunk web.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [settings]
+#####################################################################################################################
+
+# updateCheckerBaseURL
+
+- name: Set updateCheckerBaseURL
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=updateCheckerBaseURL
+            value={{ splunk_web_conf.settings.updateCheckerBaseURL }}
+            state=present
+  when: splunk_web_conf.settings.updateCheckerBaseURL is defined and 
+        splunk_web_conf.settings.updateCheckerBaseURL != "http://quickdraw.Splunk.com/js/"
+
+- name: Unset updateCheckerBaseURL (default)
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=updateCheckerBaseURL
+            state=absent
+  when: splunk_web_conf.settings.updateCheckerBaseURL is undefined or 
+        splunk_web_conf.settings.updateCheckerBaseURL == "http://quickdraw.Splunk.com/js/"
