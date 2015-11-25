@@ -4,5 +4,7 @@
 - include: server_conf_license.xml
 - include: server_conf_general.xml
 - include: server_conf_clustering.xml
+- include: server_conf_shclustering.xml
 - include: server_conf_replication_port.yml
 - include: server_conf_replication_port_ssl.yml
+- include: server_conf_diskUsage.xml

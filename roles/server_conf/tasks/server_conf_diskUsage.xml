@@ -1,0 +1,26 @@
+---
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [diskUsage]
+#####################################################################################################################
+
+# minFreeSpace
+
+- name: Set minFreeSpace (static)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=diskUsage
+            option=minFreeSpace
+            value={{ splunk_server_conf.diskUsage.minFreeSpace }}
+            state=present
+  when: splunk_server_conf.diskUsage.minFreeSpace is defined and
+        splunk_server_conf.diskUsage.minFreeSpace != "5000"
+
+- name: Unset minFreeSpace (default)
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=diskUsage
+            option=minFreeSpace
+            state=absent
+  when: splunk_server_conf.diskUsage.minFreeSpace is undefined

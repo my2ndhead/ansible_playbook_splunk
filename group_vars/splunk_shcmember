@@ -38,7 +38,20 @@ splunk_outputs_conf:
 ####################################################################################################################
 
 splunk_server_conf:
-  general:
-    site: site0
+  diskUsage:
+    minFreeSpace: 2000
   license:
     master_uri: dynamic
+  clustering:
+    mode: searchhead
+    master_uri: dynamic
+  shclustering:
+    shcluster_label: production
+    mgmt_uri: dynamic
+    conf_deploy_fetch_url: dynamic
+    id: 04f7aad4-0164-4848-9e8f-f10bafb2f95d
+  replication_port_ssl:
+    port: 9888
+    rootCA: $SPLUNK_HOME/etc/auth/cacert.pem
+    serverCert: $SPLUNK_HOME/etc/auth/server.pem
+    password: $1$2lO4zAA+GjI
