@@ -15,6 +15,9 @@
 - include: license/master_uri.yml
 - include: replication_port/port.yml
 - include: replication_port-ssl/port.yml
+- include: replication_port-ssl/rootCA.yml
+- include: replication_port-ssl/serverCert.yml
+- include: replication_port-ssl/password.yml
 - include: shclustering/conf_deploy_fetch_url.yml
 - include: shclustering/election.yml
 - include: shclustering/id.yml
@@ -23,4 +26,3 @@
 - include: shclustering/replication_factor.yml
 - include: shclustering/shcluster_label.yml
 - include: sslConfig/sslKeysfilePassword.yml
-

@@ -17,7 +17,6 @@
             state=present
   when: splunk_server_conf.clustering.master_uri is defined and
         splunk_server_conf.clustering.master_uri == "dynamic"
-  tags: server_clustering_master_uri
 
 - name: Set master_uri (static)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -27,7 +26,6 @@
             state=present
   when: splunk_server_conf.clustering.master_uri is defined and
         splunk_server_conf.clustering.master_uri != "dynamic"
-  tags: server_clustering_master_uri
 
 - name: Unset master_uri (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -35,5 +33,4 @@
             option=master_uri
             state=absent
   when: splunk_server_conf.clustering.master_uri is undefined
-  tags: server_clustering_master_uri
 

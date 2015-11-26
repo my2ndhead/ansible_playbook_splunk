@@ -4,24 +4,23 @@
 #####################################################################################################################
 
 #####################################################################################################################
-# [clustering]
+# [replication_port-ssl:<port>]
 #####################################################################################################################
 
-# mode
+# rootCA
 
-- name: Set mode
+- name: Set rootCA
   ini_file: dest={{ splunk_conf_path }}/server.conf
-            section=clustering
-            option=mode
-            value={{ splunk_server_conf.clustering.mode }}
+            section="replication_port-ssl://{{ splunk_server_conf.replication_port_ssl.port }}"
+            option=rootCA
+            value={{ splunk_server_conf.replication_port_ssl.rootCA }}
             state=present
-  when: splunk_server_conf.clustering.mode is defined
+  when: splunk_server_conf.replication_port_ssl.rootCA is defined
 
-- name: Unset mode (default)
+- name: Unset rootCA (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
-            section=clustering
-            option=mode
+            section="replication_port-ssl://{{ splunk_server_conf.replication_port_ssl.port }}"
+            option=rootCA
             state=absent
-  when: splunk_server_conf.clustering.mode is undefined or
-        splunk_server_conf.clustering.mode == "disabled"
-
+  when: splunk_server_conf.replication_port_ssl is defined and
+        splunk_server_conf.replication_port_ssl.rootCA is undefined

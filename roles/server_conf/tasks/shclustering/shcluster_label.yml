@@ -16,9 +16,6 @@
             value="{{ splunk_server_conf.shclustering.shcluster_label }}"
             state=present
   when: splunk_server_conf.shclustering.shcluster_label is defined
-  tags: 
-    - server_shclustering_shcluster_label
-    - test
 
 - name: Unset shcluster_label (default)
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -26,6 +23,3 @@
             option=shcluster_label
             state=absent
   when: splunk_server_conf.shclustering.shcluster_label is undefined
-  tags: 
-    - server_shclustering_cluster_label
-

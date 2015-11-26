@@ -18,8 +18,6 @@
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri is defined and
         splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri == "dynamic"
-  tags: 
-    - outputs_indexer_discovery_master_uri
 
 - name: Set indexer_discovery master_uri (static)
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
@@ -30,8 +28,6 @@
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri is defined and
         splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri != "dynamic"
-  tags: 
-    - outputs_indexer_discovery_master_uri
 
 - name: Unset indexer_discovery master_uri (default)
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
@@ -40,5 +36,3 @@
             state=absent
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri is undefined
-  tags:
-    - outputs_indexer_discovery_master_uri

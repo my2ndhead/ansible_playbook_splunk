@@ -1,0 +1,5 @@
+---
+- include: restart_shcmember.yml
+- include: init.yml
+- include: restart_shcmember.yml
+- include: bootstrap.yml

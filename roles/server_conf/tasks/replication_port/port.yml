@@ -12,12 +12,10 @@
             section="replication_port://{{ splunk_server_conf.replication_port.port }}"
             state=present
   when: splunk_server_conf.replication_port.port is defined
-  tags: server_conf_replication_port_port
 
 - name: Check actual config for replication_port
   shell: grep 'replication_port:' {{ splunk_conf_path }}/server.conf | sed 's/\[replication_port:\/\/\(.*\)]/\1/'
   register: splunk_server_replication_port_port_inifile
-  tags: server_conf_replication_port_port 
 
 - name: Unset replication_port (default)
   ini_file: dest="{{ splunk_conf_path }}/server.conf"
@@ -25,4 +23,3 @@
             state=absent
   when: splunk_server_conf.replication_port.port is undefined and
         splunk_server_replication_port_port_inifile.stdout != ""
-  tags: server_conf_conf_replication_port_port

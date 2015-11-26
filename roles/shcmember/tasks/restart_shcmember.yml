@@ -1,13 +1,8 @@
 ---
 #####################################################################################################################
-# Configurations for Splunk outputs.conf
+# Restart shcmembers
 #####################################################################################################################
 
-# touch 
-
-- name: Touch outputs.conf
-  file: path={{ splunk_conf_path }}/outputs.conf
-        owner=splunk
-        group=splunk
-        mode=600 
-        state=touch
+- name: Run splunk restart
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
+  when: splunk_server_conf.shclustering.id is defined

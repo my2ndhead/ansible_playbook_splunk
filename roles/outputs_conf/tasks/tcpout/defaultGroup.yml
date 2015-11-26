@@ -16,7 +16,6 @@
             value={{ splunk_outputs_conf.tcpout.defaultGroup }}
             state=present
   when: splunk_outputs_conf.tcpout.defaultGroup is defined
-  tags: outputs_tcpout_defaultGroup
 
 - name: Unset defaultGroup (default)
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
@@ -24,4 +23,3 @@
             option=defaultGroup
             state=absent
   when: splunk_outputs_conf.tcpout.defaultGroup is undefined
-  tags: outputs_tcpout_defaultGroup

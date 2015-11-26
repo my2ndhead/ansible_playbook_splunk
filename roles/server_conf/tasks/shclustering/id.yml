@@ -16,8 +16,6 @@
             value={{ splunk_server_conf.shclustering.id }}
             state=present
   when: splunk_server_conf.shclustering.id is defined
-  tags:
-    - server_shclustering_id
 
 - name: Unset shclustering id
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -25,6 +23,4 @@
             option=id
             state=absent
   when: splunk_server_conf.shclustering.id is undefined
-  tags:
-    - server_shclustering_id
 

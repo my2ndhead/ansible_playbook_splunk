@@ -6,4 +6,3 @@
              state=enabled 
   when: splunk_installation.firewalld_open is defined
   with_dict: splunk_installation.firewalld_open_port
-  tags: splunk_firewalld_open_port

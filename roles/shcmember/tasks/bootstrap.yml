@@ -1,0 +1,9 @@
+---
+#####################################################################################################################
+# Bootstrap shcluster
+#####################################################################################################################
+
+- name: Run bootstrap shcluster-captain
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk bootstrap shcluster-captain -servers_list {{ groups['shcmember'] | create_shcluster_mgmt_uri_servers }} -auth admin:{{ splunk_installation.admin_password }}"
+  when: splunk_server_conf.shclustering.id is defined
+  run_once: true

@@ -49,7 +49,7 @@ splunk_server_conf:
     shcluster_label: production
     mgmt_uri: dynamic
     conf_deploy_fetch_url: dynamic
-    id: 04f7aad4-0164-4848-9e8f-f10bafb2f95d
+    id: 6D1F6C76-3370-40BA-98F3-2C16AEEF24F1
   replication_port_ssl:
     port: 9888
     rootCA: $SPLUNK_HOME/etc/auth/cacert.pem

@@ -5,4 +5,3 @@
          dest="{{ splunk_repository.repository_root }}/distServerKeys/{{ ansible_fqdn }}/trusted.pem"
          flat=yes
          fail_on_missing=yes 
-  tags: splunk_fetch_distserverkeys
