@@ -51,3 +51,6 @@ splunk_server_conf:
     search_factor: 2
     available_sites: "site1, site2"
     cluster_label: dynamic
+  diskUsage:
+    minFreeSpace: 2000
+

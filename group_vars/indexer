@@ -48,3 +48,6 @@ splunk_server_conf:
     rootCA: $SPLUNK_HOME/etc/auth/cacert.pem
     serverCert: $SPLUNK_HOME/etc/auth/server.pem
     password: $1$2lO4zAA+GjI
+  diskUsage:
+    minFreeSpace: 2000
+
