@@ -9,7 +9,7 @@
 
 # shcluster_label
 
-- name: Set shcluster_label
+- name: "Configure server.conf [shclustering] - shcluster_label state=present"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=shcluster_label
@@ -17,7 +17,7 @@
             state=present
   when: splunk_server_conf.shclustering.shcluster_label is defined
 
-- name: Unset shcluster_label (default)
+- name: "Configure server.conf [shclustering] - shcluster_label state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=shcluster_label

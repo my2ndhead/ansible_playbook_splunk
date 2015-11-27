@@ -7,13 +7,13 @@
 # [splunktcp:<port>]
 #####################################################################################################################
 
-- name: Set splunktcp
+- name: "Configure inputs.conf [splunktcp:<port>] - splunktcp state=present"
   ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
             section=splunktcp:{{ splunk_inputs_conf.splunktcp.port }} 
             state=present
   when: splunk_inputs_conf.splunktcp.port is defined
 
-- name: Unset splunktcp (default)
+- name: "Configure inputs.conf [splunktcp:<port>] - splunktcp state=absent (default)
   replace: dest="{{ splunk_conf_path }}/inputs.conf"
            regexp='\[splunktcp:\d+\]\n'
            replace=''

@@ -9,7 +9,7 @@
 
 # tcpout:target_group server
 
-- name: "Set tcpout:target_group server"
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - server state=present"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
             option=server
@@ -18,7 +18,7 @@
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
   when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.server is defined
  
-- name: "Unset tcpout:target_group server (default)"
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - server state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
             option=server

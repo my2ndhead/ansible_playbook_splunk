@@ -9,7 +9,7 @@
 
 # election
 
-- name: Set shclustering election
+- name: "Configure server.conf [shclustering] - election state=present"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=election
@@ -17,7 +17,7 @@
             state=present
   when: splunk_server_conf.shclustering.election is defined
 
-- name: Unset shclustering election
+- name: "Configure server.conf [shclustering] - election state=absent"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=election

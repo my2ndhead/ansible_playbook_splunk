@@ -9,7 +9,7 @@
 
 #  multisite
 
-- name: Set multisite 
+- name: "Configure server.conf [clustering] - multisite state=present" 
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=multisite
@@ -18,7 +18,7 @@
   when: splunk_server_conf.clustering.multisite is defined or
         splunk_server_conf.clustering.multisite == true
 
-- name: Unset multisite (default)
+- name: "Configure server.conf [clustering] - multisite state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=mode

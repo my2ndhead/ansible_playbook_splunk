@@ -9,7 +9,7 @@
 
 # minFreeSpace
 
-- name: Set minFreeSpace (static)
+- name: "Configure server.conf [diskUsage] - minFreeSpace state=present (static)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=diskUsage
             option=minFreeSpace
@@ -18,7 +18,7 @@
   when: splunk_server_conf.diskUsage.minFreeSpace is defined and
         splunk_server_conf.diskUsage.minFreeSpace != "5000"
 
-- name: Unset minFreeSpace (default)
+- name: "Configure server.conf [diskUsage] - minFreeSpace state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=diskUsage
             option=minFreeSpace

@@ -9,7 +9,7 @@
 
 # updateCheckerBaseURL
 
-- name: Set updateCheckerBaseURL
+- name: "Configure web.conf [settings] - updateCheckerBaseURL state=present"
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
             section=settings
             option=updateCheckerBaseURL
@@ -18,7 +18,7 @@
   when: splunk_web_conf.settings.updateCheckerBaseURL is defined and 
         splunk_web_conf.settings.updateCheckerBaseURL != "http://quickdraw.Splunk.com/js/"
 
-- name: Unset updateCheckerBaseURL (default)
+- name: "Configure web.conf [settings] - unset updateCheckerBaseURL state=absent (default)"
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
             section=settings
             option=updateCheckerBaseURL

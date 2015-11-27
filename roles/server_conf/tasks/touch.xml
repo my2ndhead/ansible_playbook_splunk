@@ -5,7 +5,7 @@
 
 # touch 
 
-- name: Touch outputs.conf
+- name: "Touch server.conf"
   file: path={{ splunk_conf_path }}/server.conf
         owner=splunk
         group=splunk

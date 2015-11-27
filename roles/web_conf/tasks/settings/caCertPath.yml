@@ -9,7 +9,7 @@
 
 # caCertPath
 
-- name: Set caCertPath
+- name: "Configure web.conf [settings] - caCertPath state=present"
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
             section=settings
             option=caCertPath
@@ -18,7 +18,7 @@
   when: splunk_web_conf.settings.caCertPath is defined and
         splunk_web_conf.settings.caCertPath != "etc/auth/splunkweb/cert.pem"
 
-- name: Unset caCertPath (default)
+- name: "Configure web.conf [settings] - caCertPath state=absent (default)"
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
             section=settings
             option=caCertPath

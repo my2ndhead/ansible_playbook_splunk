@@ -9,7 +9,7 @@
 
 # replication_factor
 
-- name: Set shclusetering replication_factor
+- name: "Configure server.conf [shclustering] - replication_factor state=present"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=replication_factor
@@ -18,7 +18,7 @@
   when: splunk_server_conf.shclustering.replication_factor is defined or
         splunk_server_conf.shclustering.replication_factor != 3
 
-- name: Unset shclustering replication_factor (default)
+- name: "Configure server.conf [shclustering] - replication_factor state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=replication_factor

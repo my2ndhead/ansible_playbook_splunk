@@ -9,7 +9,7 @@
 
 # httpport
 
-- name: Set httpport
+- name: "Configure web.conf [settings] - httpport state=present"
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
             section=settings
             option=httpport
@@ -18,7 +18,7 @@
   when: splunk_web_conf.settings.httpport is defined and 
         splunk_web_conf.settings.httpport != 8000
 
-- name: Unset httpport (default)
+- name: Configure web.conf [settings] - httpport state=absent (default)"
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
             section=settings
             option=httpport

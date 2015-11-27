@@ -9,7 +9,7 @@
 
 # replication_factor
 
-- name: Set replication_factor
+- name: "Configure server.conf [clustering] - replication_factor state=present"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=replication_factor
@@ -18,7 +18,7 @@
   when: splunk_server_conf.clustering.replication_factor is defined or
         splunk_server_conf.clustering.replication_factor != 3
 
-- name: Unset replication_factor (default)
+- name: "Configure server.conf [clustering] - replication_factor state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=replication_factor

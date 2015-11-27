@@ -1,4 +1,4 @@
-- name: Configure splunk dmc
+- name: "Configure Distributed Managemnt Console (dmc)"
   hosts: dmc
   user: splunk
 

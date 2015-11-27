@@ -9,7 +9,7 @@
 
 # cluster_label
 
-- name: Set cluster_label
+- name: "Configure server.conf [clustering] - cluster_label state=present"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=cluster_label
@@ -17,7 +17,7 @@
             state=present
   when: splunk_cluster_label is defined
 
-- name: Unset cluster_label (default)
+- name: "Configure server.conf [clustering] - cluster_label state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=cluster_label

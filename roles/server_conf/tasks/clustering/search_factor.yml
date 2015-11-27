@@ -9,7 +9,7 @@
 
 # search_factor
 
-- name: Set search_factor
+- name: "Configure server.conf [clustering] - search_factor state=present"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=search_factor
@@ -17,7 +17,7 @@
             state=present
   when: splunk_server_conf.clustering.search_factor is defined
 
-- name: Unset search_factor (default)
+- name: "Configure server.conf [clustering] - search_factor state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=search_factor

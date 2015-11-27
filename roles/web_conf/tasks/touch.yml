@@ -5,7 +5,7 @@
 
 # touch
 
-- name: Touch web.conf
+- name: "Touch web.conf"
   file: path={{ splunk_conf_path }}/web.conf
         owner=splunk
         group=splunk

@@ -9,7 +9,7 @@
 
 # master_uri
 
-- name: Set master_uri (dynamic)
+- name: "Configure server.conf [clustering] - master_uri state=present (dynamic)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=master_uri
@@ -18,7 +18,7 @@
   when: splunk_server_conf.clustering.master_uri is defined and
         splunk_server_conf.clustering.master_uri == "dynamic"
 
-- name: Set master_uri (static)
+- name: "Configure server.conf [clustering] - master_uri state=present (static)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=master_uri
@@ -27,7 +27,7 @@
   when: splunk_server_conf.clustering.master_uri is defined and
         splunk_server_conf.clustering.master_uri != "dynamic"
 
-- name: Unset master_uri (default)
+- name: "Configure server.conf [clustering] - master_uri state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=master_uri

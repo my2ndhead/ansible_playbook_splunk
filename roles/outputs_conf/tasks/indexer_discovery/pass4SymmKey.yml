@@ -7,9 +7,9 @@
 # [indexer_discovery]
 #####################################################################################################################
 
-# indexer_discovery pass4SymmKey
+# pass4SymmKey
 
-- name: Set indexer_discovery pass4SymmKey
+- name: "Configure outputs.conf [indexer_discovery] - pass4SymmKey state=present"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=indexer_discovery:{{ item.key }}
             option=pass4SymmKey
@@ -18,7 +18,7 @@
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.pass4SymmKey is defined
 
-- name: Unset indexer_discovery pass4SymmKey (default)
+- name: "Configure outputs.conf [indexer_discovery] - pass4SymmKey state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=indexer_discovery:{{ item.key }}
             option=pass4SymmKey

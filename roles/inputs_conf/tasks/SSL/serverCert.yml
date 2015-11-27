@@ -9,7 +9,7 @@
 
 # serverCert
 
-- name: Set serverCert
+- name: "Configure inputs.conf: Set serverCert"
   ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
             section=SSL 
             option=serverCert
@@ -17,7 +17,7 @@
             state=present
   when: splunk_inputs_conf.SSL.serverCert is defined
 
-- name: Unset serverCert (default)
+- name: Configure inputs.conf: Unset serverCert (default)"
   ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
             section=SSL 
             option=serverCert

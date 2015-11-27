@@ -9,7 +9,7 @@
 
 # site
 
-- name: Set site (dynamic)
+- name: "Configure server.conf [general] - site state=present (dynamic)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=general
             option=site
@@ -18,7 +18,7 @@
   when: splunk_server_conf.general.site is defined and
         splunk_server_conf.general.site == "dynamic"
 
-- name: Set site (static)
+- name: "Configure server.conf [general] - site state=present (static)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=general
             option=site
@@ -27,7 +27,7 @@
   when: splunk_server_conf.general.site is defined and
         splunk_server_conf.general.site != "dynamic"
 
-- name: Unset site (default)
+- name: "Configure server.conf [general] - site state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=general
             option=site

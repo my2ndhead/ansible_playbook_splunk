@@ -7,9 +7,9 @@
 # [tcpout:<tcpout:target_group>]
 #####################################################################################################################
 
-# tcpout:target_group indexerDiscovery
+# tcpout:target_group
 
-- name: "Set tcpout:target_group indexerDiscovery"
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - tcpout:target_group state=present"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
             option=indexerDiscovery
@@ -18,7 +18,7 @@
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
   when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.indexerDiscovery is defined
 
-- name: "Unset tcpout:target_group indexerDiscovery (default)"
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - tcpout:target_group state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
             option=indexerDiscovery

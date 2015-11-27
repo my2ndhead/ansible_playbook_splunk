@@ -9,7 +9,7 @@
 
 # pass4SymmKey
 
-- name: Set shclustering pass4SymmKey
+- name: "Configure server.conf [shclustering] - pass4SymmKey state=present"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=pass4SymmKey
@@ -17,7 +17,7 @@
             state=present
   when: splunk_server_conf.shclustering.pass4SymmKey is defined
 
-- name: Unset shclustering pass4SymmKey
+- name: "Configure server.conf [shclustering] - pass4SymmKey state=absent"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=pass4SymmKey

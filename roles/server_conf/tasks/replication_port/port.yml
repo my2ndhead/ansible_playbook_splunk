@@ -7,17 +7,17 @@
 # [replication_port:<port>]
 #####################################################################################################################
 
-- name: Set replication_port
+- name: "Configure server.conf [replication_port:<port>] - replication_port state=present"
   ini_file: dest="{{ splunk_conf_path }}/server.conf"
             section="replication_port://{{ splunk_server_conf.replication_port.port }}"
             state=present
   when: splunk_server_conf.replication_port.port is defined
 
-- name: Check actual config for replication_port
+- name: "Configure server.conf [replication_port:<port>] - replication_port check presence"
   shell: grep 'replication_port:' {{ splunk_conf_path }}/server.conf | sed 's/\[replication_port:\/\/\(.*\)]/\1/'
   register: splunk_server_replication_port_port_inifile
 
-- name: Unset replication_port (default)
+- name: "Configure server.conf [replication_port:<port>] - replication_port state=absent (default)"
   ini_file: dest="{{ splunk_conf_path }}/server.conf"
             section="replication_port://{{ splunk_server_replication_port_port_inifile.stdout }}"
             state=absent

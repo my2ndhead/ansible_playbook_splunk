@@ -7,9 +7,9 @@
 # [tcpout:<tcpout:target_group>]
 #####################################################################################################################
 
-# tcpout:target_group sslVerifyServerCert
+# sslVerifyServerCert
 
-- name: "Set tcpout:target_group sslVerifyServerCert"
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - sslVerifyServerCert state=present"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
             option=sslVerifyServerCert
@@ -19,7 +19,7 @@
   when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert is defined and
         splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert == true
 
-- name: "Unset tcpout:target_group sslVerifyServerCert (default)"
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - sslVerifyServerCert state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
             option=sslVerifyServerCert

@@ -9,7 +9,7 @@
 
 # id
 
-- name: Set shclustering id
+- name: "Configure server.conf [shclustering] - id state=present"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=id
@@ -17,7 +17,7 @@
             state=present
   when: splunk_server_conf.shclustering.id is defined
 
-- name: Unset shclustering id
+- name: "Configure server.conf [shclustering] - id state=absent"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
             option=id
