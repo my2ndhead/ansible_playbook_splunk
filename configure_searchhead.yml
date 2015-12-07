@@ -4,6 +4,6 @@
 
   roles:
     - searchhead
-    - web_conf
-    - outputs_conf
-    - server_conf
+    - conf/web
+    - conf/outputs
+    - conf/server

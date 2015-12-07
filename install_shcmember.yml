@@ -1,13 +1,13 @@
-- name: Configure splunk shcmember
+- name: Install splunk shcmember
   hosts: shcmember
   user: splunk
 
   roles:
-    - web_conf
-    - outputs_conf
-    - server_conf
+    - conf/web
+    - conf/outputs
+    - conf/server
     - shcmember
-    - server_conf
+    - conf/server
 
   post_tasks:
     - name: Run splunk restart

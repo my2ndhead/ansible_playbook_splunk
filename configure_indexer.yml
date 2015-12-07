@@ -3,6 +3,6 @@
   user: splunk
 
   roles:
-    - web_conf
-    - inputs_conf
-    - server_conf
+    - conf/web
+    - conf/inputs
+    - conf/server
