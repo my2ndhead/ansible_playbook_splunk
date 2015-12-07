@@ -1,0 +1,31 @@
+---
+
+- name: Copy Splunk_TA_windows app to remote host
+  copy: src="{{ splunk_repository.repository_root }}/apps/Splunk_TA_windows/{{ splunk_apps.Splunk_TA_windows }}"
+        dest="/tmp/{{ splunk_apps.Splunk_TA_windows }}"
+  when: splunk_apps.Splunk_TA_windows is defined
+
+- name: Unarchive Splunk_TA_windows to $SPLUNK_HOME/etc/deployment-apps
+  unarchive: src="{{ splunk_installation.remote_app_temp_path }}/{{ splunk_apps.Splunk_TA_windows }}"
+             dest="{{ splunk_installation.splunk_home_path }}/etc/deployment-apps"
+             copy=no
+  when: splunk_apps.Splunk_TA_windows is defined and
+        inventory_hostname in groups['deploymentserver']
+
+- name: Unarchive Splunk_TA_windows to $SPLUNK_HOME/etc/shcluster/apps
+  unarchive: src="{{ splunk_installation.remote_app_temp_path }}/{{ splunk_apps.Splunk_TA_windows }}"
+             dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps"
+             copy=no
+  when: splunk_apps.Splunk_TA_windows is defined and
+        inventory_hostname in groups['deployer']
+
+- name: Unarchive Splunk_TA_windows to $SPLUNK_HOME/etc/master-apps
+  unarchive: src="{{ splunk_installation.remote_app_temp_path }}/{{ splunk_apps.Splunk_TA_windows }}"
+             dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps"
+             copy=no
+  when: splunk_apps.Splunk_TA_windows is defined and
+        inventory_hostname in groups['masternode']
+
+- name: Remove temporary file 
+  command: rm "{{ splunk_installation.remote_app_temp_path }}/{{ splunk_apps.Splunk_TA_windows }}"
+  when: splunk_apps.Splunk_TA_windows is defined

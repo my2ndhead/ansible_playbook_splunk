@@ -14,8 +14,10 @@ splunk_installation:
 # package_url: http://download.splunk.com/products/splunk/releases/6.3.1/splunk/linux/splunk-6.3.1-f3e41e4b37b2-Linux-x86_64.tgz
   package_file: splunk-6.3.1-f3e41e4b37b2-linux-2.6-x86_64.rpm
 # package_file: splunk-6.3.1-f3e41e4b37b2-Linux-x86_64.tgz
-  remote_package_path: /tmp
+  remote_package_temp_path: /tmp
   delete_package_after_install: false
+
+  remote_app_temp_path: /tmp
 
   admin_password: verysecret
 

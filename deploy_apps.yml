@@ -1,0 +1,6 @@
+- name: Deploy Apps
+  hosts: deploymentserver:deployer:masternode:heavyforwarder
+  user: splunk
+
+  roles:
+    - apps/Splunk_TA_windows
