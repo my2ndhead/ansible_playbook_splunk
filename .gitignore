@@ -11,10 +11,6 @@ group_vars/repository
 group_vars/deploymentserver
 group_vars/site1
 group_vars/dmc
-group_vars/all
-group_vars/all/splunk_packages
-group_vars/all/splunk_installation
-group_vars/all/splunk_repository
 group_vars/shcmember
 group_vars/site2
 group_vars/all/splunk_packages
