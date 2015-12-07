@@ -1,2 +1,4 @@
+group_vars/*
+group_vars/all/*
 !group_vars/*.template
 !group_vars/all/*.template
