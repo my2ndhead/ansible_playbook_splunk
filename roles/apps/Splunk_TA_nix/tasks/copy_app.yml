@@ -1,27 +1,27 @@
 ---
 
-- name: Copy Splunk_TA_windows app to remote host
-  copy: src="{{ splunk_repository.repository_root }}/apps/Splunk_TA_windows/{{ item.value.bundle }}"
+- name: Copy Splunk_TA_nix app to remote host
+  copy: src="{{ splunk_repository.repository_root }}/apps/Splunk_TA_nix/{{ item.value.bundle }}"
         dest="/{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ splunk_apps.Splunk_TA_windows }}"
+  with_dict: "{{ splunk_apps.Splunk_TA_nix }}"
 
-- name: Clean existing Splunk_TA_windows directory
-  file: path="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key }}/Splunk_TA_windows"
+- name: Clean existing Splunk_TA_nix directory
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key }}/Splunk_TA_nix"
         state=absent
   when: "{{ item.value.clean_install }} is defined and
         {{ item.value.clean_install }} == true"
-  with_dict: splunk_apps.Splunk_TA_windows
+  with_dict: splunk_apps.Splunk_TA_nix
 
-- name: Unarchive Splunk_TA_windows
+- name: Unarchive Splunk_TA_nix
   unarchive: src="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
              dest="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key }}"
              copy=no
   when: "{{ item.value.install }} == true"
-  with_dict: splunk_apps.Splunk_TA_windows
+  with_dict: splunk_apps.Splunk_TA_nix
         
 - name: Remove temporary file 
   file: path="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
         state=absent
   when: "{{ item.value.install }} == true"
-  with_dict: splunk_apps.Splunk_TA_windows
+  with_dict: splunk_apps.Splunk_TA_nix

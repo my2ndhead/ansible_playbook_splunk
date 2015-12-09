@@ -1,3 +1,2 @@
 ---
 - include: copy_app.yml
-- include: configure_app.yml

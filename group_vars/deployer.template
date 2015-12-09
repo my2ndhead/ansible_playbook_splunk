@@ -46,8 +46,18 @@ splunk_server_conf:
     shcluster_label: production
 
 #####################################################################################################################
-# Configurations for Splunk App Splunk_TA_windows
+# Configurations for Splunk Apps
 #####################################################################################################################
 
 splunk_apps:
-    Splunk_TA_windows: "splunk-add-on-for-microsoft-windows_480.tgz"
+  Splunk_TA_windows:
+    shcluster/apps:
+      install: true
+      clean_install: true
+      bundle: "splunk-add-on-for-microsoft-windows_480.tgz"
+
+  Splunk_TA_nix:
+    shcluster/apps:
+      install: true
+      clean_install: true
+      bundle: "splunk-add-on-for-unix-and-linux_520.tgz"

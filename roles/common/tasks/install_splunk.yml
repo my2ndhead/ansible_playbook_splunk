@@ -17,11 +17,11 @@
 
 - name: Copy Splunk package
   copy: src="{{ splunk_repository.repository_root }}/packages/{{ splunk_installation.package_file }}"
-        dest="/{{ splunk_installation.remote_package_path }}/{{ splunk_installation.package_file }}"
+        dest="/{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
         mode=600
 
 - name: Install Splunk package from rpm
-  yum: name="{{ splunk_installation.remote_package_path }}/{{ splunk_installation.package_file }}" 
+  yum: name="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}" 
        state=present
   when: splunk_installation.package_format == "rpm"
 

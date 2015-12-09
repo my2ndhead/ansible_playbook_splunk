@@ -46,6 +46,8 @@ splunk_server_conf:
     sslKeysfilePassword: $1$nhb+jVVyTmEL
   license:
     master_uri: dynamic
+  diskUsage:
+    minFreeSpace: 2000
 
 #####################################################################################################################
 # Configurations for Splunk distsearch.conf

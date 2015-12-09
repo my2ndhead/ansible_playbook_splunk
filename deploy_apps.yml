@@ -4,3 +4,4 @@
 
   roles:
     - apps/Splunk_TA_windows
+    - apps/Splunk_TA_nix
