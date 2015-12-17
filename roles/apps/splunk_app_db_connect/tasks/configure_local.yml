@@ -2,24 +2,24 @@
 
 - name: Configure app files
   copy: src="{{ item }}"
-        dest="{{ splunk_installation.splunk_home_path }}/etc/apps/splunk_app_db_connect/local/"
-  when: splunk_app_db_connect.apps is defined
+        dest="{{ splunk_installation.splunk_home_path }}/etc/apps/{{ app_name }}/local/"
+  when: "{{ app_name }}.apps is defined"
   with_fileglob: apps/local/*.conf
     
 - name: Configure deployment-app files
   copy: src="{{ item }}"
-        dest="{{ splunk_installation.splunk_home_path }}/etc/deployment-apps/splunk_app_db_connect/local/"
-  when: splunk_app_db_connect.deployment-apps is defined
+        dest="{{ splunk_installation.splunk_home_path }}/etc/deployment-apps/{{ app_name }}/local/"
+  when: "{{ app_name }}.deployment-apps is defined"
   with_fileglob: deployment-apps/local/*.conf
 
 - name: Configure shcluster/apps files
   copy: src="{{ item }}"
-        dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/splunk_app_db_connect/local/"
-  when: splunk_app_db_connect.shcluster/apps is defined
+        dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/{{ app_name }}/local/"
+  when: "{{ app_name }}.shcluster/apps is defined"
   with_fileglob: shcluster/apps/local/*.conf
 
 - name: Configure master-apps files
   copy: src="{{ item }}"
-        dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/splunk_app_db_connect/local/"
-  when: splunk_app_db_connect.master-apps is defined
+        dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/{{ app_name }}/local/"
+  when: "{{ app_name }}.master-apps is defined"
   with_fileglob: master-apps/local/*.conf
