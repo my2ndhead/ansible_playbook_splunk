@@ -1,0 +1,20 @@
+---
+#####################################################################################################################
+# Configurations for Splunk App Splunk_TA_nix
+#####################################################################################################################
+
+Splunk_TA_windows:
+  deployment_apps:
+    install: true
+    clean_install: true
+    bundle: "splunk-add-on-for-microsoft-windows_480.tgz"
+
+Splunk_TA_nix:
+  deployment_apps:
+    install: true
+    clean_install: true
+    bundle: "splunk-add-on-for-unix-and-linux_520.tgz"
+  apps:
+    install: true
+    clean_install: true
+    bundle: "splunk-add-on-for-unix-and-linux_520.tgz"

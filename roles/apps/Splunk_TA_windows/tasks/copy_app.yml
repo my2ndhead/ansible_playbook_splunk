@@ -4,24 +4,24 @@
   copy: src="{{ splunk_repository.repository_root }}/apps/Splunk_TA_windows/{{ item.value.bundle }}"
         dest="/{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ splunk_apps.Splunk_TA_windows | default ({}) }}"
+  with_dict: "{{ Splunk_TA_windows | default ({}) }}"
 
 - name: Clean existing Splunk_TA_windows directory
   file: path="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('_', '-') }}/Splunk_TA_windows"
         state=absent
   when: "{{ item.value.clean_install }} is defined and
         {{ item.value.clean_install }} == true"
-  with_dict: "{{ splunk_apps.Splunk_TA_windows | default ({}) }}"
+  with_dict: "{{ Splunk_TA_windows | default ({}) }}"
 
 - name: Unarchive Splunk_TA_windows
   unarchive: src="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
              dest="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('_', '-') }}"
              copy=no
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ splunk_apps.Splunk_TA_windows | default ({}) }}"
+  with_dict: "{{ Splunk_TA_windows | default ({}) }}"
         
 - name: Remove temporary file 
   file: path="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
         state=absent
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ splunk_apps.Splunk_TA_windows | default ({}) }}"
+  with_dict: "{{ Splunk_TA_windows | default ({}) }}"

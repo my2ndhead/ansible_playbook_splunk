@@ -13,7 +13,7 @@
             state=present
   when: splunk_inputs_conf.splunktcp.port is defined
 
-- name: "Configure inputs.conf [splunktcp:<port>] - splunktcp state=absent (default)
+- name: "Configure inputs.conf [splunktcp:<port>] - splunktcp state=absent (default)"
   replace: dest="{{ splunk_conf_path }}/inputs.conf"
            regexp='\[splunktcp:\d+\]\n'
            replace=''

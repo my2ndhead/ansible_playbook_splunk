@@ -1,5 +1,5 @@
 ---
-- include: touch.xml
+- include: touch.yml
 - include: clustering/available_sites.yml
 - include: clustering/cluster_label.yml
 - include: clustering/master_uri.yml

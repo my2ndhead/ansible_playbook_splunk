@@ -1,0 +1,10 @@
+---
+#####################################################################################################################
+# Configurations for Splunk App Splunk_TA_windows
+#####################################################################################################################
+
+Splunk_TA_windows:
+  shcluster/apps:
+    install: true
+    clean_install: true
+    bundle: "splunk-add-on-for-microsoft-windows_480.tgz"

@@ -3,23 +3,23 @@
 - name: Configure app files
   copy: src="{{ item }}"
         dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nix/local/"
-  when: splunk_apps.Splunk_TA_nix.apps is defined
+  when: Splunk_TA_nix.apps is defined
   with_fileglob: apps/local/*.conf
 
 - name: Configure deployment-app files
   copy: src="{{ item }}"
         dest="{{ splunk_installation.splunk_home_path }}/etc/deployment-apps/Splunk_TA_nix/local/"
-  when: splunk_apps.Splunk_TA_nix.deployment_apps is defined
+  when: Splunk_TA_nix.deployment_apps is defined
   with_fileglob: deployment-apps/local/*.conf
 
 - name: Configure shcluster/apps files
   copy: src="{{ item }}"
         dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_TA_nix/local/"
-  when: splunk_apps.Splunk_TA_nix.shcluster/apps is defined
+  when: Splunk_TA_nix.shcluster/apps is defined
   with_fileglob: shcluster/apps/local/*.conf
 
 - name: Configure master-apps files
   copy: src="{{ item }}"
         dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_nix/local/"
-  when: splunk_apps.Splunk_TA_nix.master_apps is defined
+  when: Splunk_TA_nix.master_apps is defined
   with_fileglob: master-apps/local/*.conf

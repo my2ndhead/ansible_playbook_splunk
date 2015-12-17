@@ -4,24 +4,24 @@
   copy: src="{{ splunk_repository.repository_root }}/apps/splunk_app_db_connect/{{ item.value.bundle }}"
         dest="/{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ splunk_apps.splunk_app_db_connect | default({}) }}"
+  with_dict: "{{ splunk_app_db_connect | default({}) }}"
 
 - name: Clean existing splunk_app_db_connect directory
   file: path="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('_', '-') }}/splunk_app_db_connect"
         state=absent
   when: "{{ item.value.clean_install }} is defined and
         {{ item.value.clean_install }} == true"
-  with_dict: "{{ splunk_apps.splunk_app_db_connect | default({}) }}"
+  with_dict: "{{ splunk_app_db_connect | default({}) }}"
 
 - name: Unarchive splunk_app_db_connect
   unarchive: src="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
              dest="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('_', '-') }}"
              copy=no
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ splunk_apps.splunk_app_db_connect | default({}) }}"
+  with_dict: "{{ splunk_app_db_connect | default({}) }}"
         
 - name: Remove temporary file 
   file: path="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
         state=absent
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ splunk_apps.splunk_app_db_connect | default({}) }}"
+  with_dict: "{{ splunk_app_db_connect | default({}) }}"
