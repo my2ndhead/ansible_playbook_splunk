@@ -6,7 +6,7 @@
     - conf/web
     - conf/outputs
     - conf/server
-    - hosts/shcmember
+    - group/shcmember
     - conf/server
 
   post_tasks:
