@@ -1,5 +1,5 @@
 - name: Configure splunk indexers
-  hosts: indexer
+  hosts: searchpeer
   user: splunk
 
   roles:

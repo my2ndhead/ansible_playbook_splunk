@@ -1,0 +1,8 @@
+- name: Configure splunk peernodes
+  hosts: peernode
+  user: splunk
+
+  roles:
+    - conf/web
+    - conf/inputs
+    - conf/server

@@ -9,7 +9,9 @@ searchhead3.private.domain
 [searchhead]
 searchhead.private.domain
 
-[indexer]
+[searchpeer]
+
+[peernode]
 indexer1.private.domain
 indexer2.private.domain
 
