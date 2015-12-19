@@ -17,6 +17,7 @@
             state=present
   when: splunk_distsearch_conf.distributedSearch.disabled is defined and
         splunk_distsearch_conf.distributedSearch.disabled == true
+  notify: splunk restart
 
 - name: "Configure distsearch.conf [distributedSearch] - disabled state=absent (default)"
   ini_file: dest="{{ splunk_conf_path }}/distsearch.conf"
@@ -25,4 +26,4 @@
             state=absent
   when:  splunk_distsearch_conf.distributedSearch.disabled is undefined or 
          splunk_distsearch_conf.distributedSearch.disabled == false
-
+  notify: splunk restart

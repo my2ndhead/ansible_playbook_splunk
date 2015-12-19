@@ -16,6 +16,7 @@
             value={{ splunk_web_conf.settings.startwebserver }}
   when: splunk_web_conf.settings.startwebserver is defined and
         splunk_web_conf.settings.startwebserver == 0
+  notify: splunk restart
 
 - name: "Configure web.conf [settings] - startwebserver state=absent (default)"
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
@@ -24,4 +25,4 @@
             state=absent
   when: splunk_web_conf.settings.startwebserver is undefined or
         splunk_web_conf.settings.startwebserver == 1
-
+  notify: splunk restart

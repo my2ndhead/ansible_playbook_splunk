@@ -1,0 +1,16 @@
+---
+- name: splunk start
+  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk start"
+  when: splunk_start is defined and
+        splunk_start
+
+- name: splunk stop
+  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
+  when: splunk_stop is defined and
+        splunk_stop
+
+- name: splunk restart
+  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
+  when: splunk_restart is defined and
+        splunk_restart
+        

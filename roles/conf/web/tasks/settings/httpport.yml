@@ -17,6 +17,7 @@
             state=present
   when: splunk_web_conf.settings.httpport is defined and 
         splunk_web_conf.settings.httpport != 8000
+  notify: splunk restart
 
 - name: Configure web.conf [settings] - httpport state=absent (default)"
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
@@ -25,4 +26,4 @@
             state=absent
   when: splunk_web_conf.settings.httpport is undefined or
         splunk_web_conf.settings.httpport == "8000"
-
+  notify: splunk restart

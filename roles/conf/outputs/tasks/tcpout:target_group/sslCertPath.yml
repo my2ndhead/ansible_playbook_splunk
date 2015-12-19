@@ -17,6 +17,7 @@
             state=present
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
   when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslCertPath is defined
+  notify: splunk restart
 
 - name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - sslCertPath state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
@@ -25,4 +26,4 @@
             state=absent
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
   when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslCertPath is undefined
-
+  notify: splunk restart

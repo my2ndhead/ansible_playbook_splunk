@@ -16,6 +16,7 @@
             value="{{ splunk_server_conf.shclustering.shcluster_label }}"
             state=present
   when: splunk_server_conf.shclustering.shcluster_label is defined
+  notify: splunk restart
 
 - name: "Configure server.conf [shclustering] - shcluster_label state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -23,3 +24,4 @@
             option=shcluster_label
             state=absent
   when: splunk_server_conf.shclustering.shcluster_label is undefined
+  notify: splunk restart

@@ -16,6 +16,7 @@
             value={{ splunk_inputs_conf.SSL.serverCert }}
             state=present
   when: splunk_inputs_conf.SSL.serverCert is defined
+  notify: splunk restart
 
 - name: "Configure inputs.conf: Unset serverCert (default)"
   ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
@@ -23,4 +24,4 @@
             option=serverCert
             state=absent
   when: splunk_inputs_conf.SSL.serverCert is undefined
-
+  notify: splunk restart

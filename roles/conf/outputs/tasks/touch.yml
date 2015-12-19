@@ -11,3 +11,4 @@
         group=splunk
         mode=600 
         state=touch
+  changed_when: false

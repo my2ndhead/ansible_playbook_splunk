@@ -17,6 +17,7 @@
             state=present
   when: splunk_server_conf.clustering.multisite is defined or
         splunk_server_conf.clustering.multisite == true
+  notify: splunk restart
 
 - name: "Configure server.conf [clustering] - multisite state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
@@ -25,4 +26,5 @@
             state=absent
   when: splunk_server_conf.clustering.multisite is undefined or
         splunk_server_conf.clustering.multisite != true
+  notify: splunk restart
 
