@@ -1,3 +1,4 @@
 ---
 - include: copy_app.yml
 - include: configure_local.yml
+- include: remove_app.yml
