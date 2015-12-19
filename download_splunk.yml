@@ -1,5 +1,5 @@
 ---
-- hosts: splunk_repository
+- hosts: repository
   tasks:
   - name: Download Splunk rpm packages
     get_url: url="{{ item.value.url }}"
