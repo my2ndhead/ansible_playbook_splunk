@@ -1,6 +1,6 @@
 ############################################
 #
-# Possible values for inputs_conf role
+# Possible values for conf/outputs role
 # 
 # Follows Splunk outputs.conf.spec closely
 #

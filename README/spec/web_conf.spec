@@ -1,6 +1,6 @@
 ############################################
 #
-# Possible values for web_conf role
+# Possible values for conf/web role
 # 
 # Follows Splunk web.conf.spec closely
 #
