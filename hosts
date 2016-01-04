@@ -1,0 +1,2 @@
+[repository]
+localhost       ansible_connection=local
