@@ -6,7 +6,7 @@
 
 # Instructions
 
-* See https://github.com/my2ndhead/ansible_splunk_playbook/wiki
+* See https://github.com/my2ndhead/ansible_playbook_splunk/wiki
 
 
 ## License
