@@ -8,7 +8,9 @@
              group={{ splunk_repository.repository_group }} 
              mode=644
     with_dict: "{{ splunk_packages.linux_64_rpm }}"
-    when: splunk_installation.package_format == "rpm"
+    when: splunk_installation.package_format == "rpm" and
+          splunk_packages.linux_64_rpm is defined
+          
 
   - name: Download Splunk tgz packages
     get_url: url="{{ item.value.url }}"
@@ -17,5 +19,7 @@
              group={{ splunk_repository.repository_group }}
              mode=644
     with_dict: "{{ splunk_packages.linux_64_tgz }}"
-    when: splunk_installation.package_format == "tgz"
+    when: splunk_installation.package_format == "tgz" and
+          splunk_packages.linux_64_tgz is defined
+
 
