@@ -3,7 +3,6 @@
   remote_user: splunk
   become: yes
   become_user: root
-  become_method: su
 
   roles:
     - common
