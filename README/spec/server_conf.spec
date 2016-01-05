@@ -83,7 +83,7 @@ splunk_server_conf:
   
   shclustering:
     mgmt_uri: [mgmt-URI | dynamic]
-    * The management uri is used to identify the cluster member's own address to
+    * The management uri is used to identify the cluster members own address to
       itself.
     * Use dynamic to set own adress automatically
    
