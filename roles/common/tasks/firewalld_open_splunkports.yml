@@ -1,8 +1,8 @@
 ---
 
-- name: open splunkd port on firewalld
+- name: Open splunkd port on firewalld
   firewalld: port="{{ item.value.port }}"
              permanent=true
              state=enabled 
-  when: splunk_installation.firewalld_open is defined
-  with_dict: splunk_installation.firewalld_open_port
+  when: splunk_installation.firewalld_open_port is defined
+  with_dict: splunk_installation.firewalld_open_port | default({})
