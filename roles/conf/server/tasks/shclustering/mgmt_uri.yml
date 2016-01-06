@@ -31,7 +31,7 @@
 
 - name: "Configure server.conf [shclustering] - mgmt_uri state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
-            section=clustering
+            section=shclustering
             option=master_uri
             state=absent
   when: splunk_server_conf.shclustering.mgmt_uri is undefined
