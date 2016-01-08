@@ -18,4 +18,4 @@ splunk_packages:
       url: "http://download.splunk.com/products/splunk/releases/6.3.1/splunk/linux/splunk-6.3.1-f3e41e4b37b2-Linux-x86_64.tgz"
     package:
       version: "6.3.2"
-      url: "http://download.splunk.com/products/splunk/releases/6.3.2/splunk/linux/splunk-6.3.2-aaff59bb082c-Linux-x86_64.tgz"
+      url: "http://download.splunk.com/products/splunk/releases/6.3.1/splunk/linux/splunk-6.3.2-aaff59bb082c-Linux-x86_64.tgz"

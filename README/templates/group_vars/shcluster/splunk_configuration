@@ -1,9 +1,6 @@
 ---
-
 #####################################################################################################################
-# Configurations for Splunk server.conf
+# General Conf Variables for splunk_shcluster_production
 #####################################################################################################################
 
-splunk_server_conf:
-  license:
-    master_uri: dynamic
+splunk_shcluster_label: production

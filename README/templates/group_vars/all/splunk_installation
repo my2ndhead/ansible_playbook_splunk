@@ -4,14 +4,14 @@
 #####################################################################################################################
 splunk_installation:
   splunk_home_path: /opt/splunk
-  version: 6.3.1
+  version: 6.3.2
   ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnC6DzjkQjCXTMRqEWELAeehSldjqAemn3NflE6NKQ/wp7ekO6krRxALTBp3sD4wllCw7IRFkVPDpII29PszGxc/JL53yV2RgYRhzSxdDG5FuTKhS5FKRuQuoPPj3Y8qm1ZBxk+9W3Z/BWP593lkgLQ1v4ykO68p53+QCLy4Up1+Noyw3sRwpgx12OzDcIvjzZ2s8DjmApwXg23YB/TVS7OWG1A4AVVUa4cKq7CXnbY/uVluUnI7jUeOW1bsLnrgCuSbInxEyGmG/tcEm/2PAp22arTjpOEBvUNjdIwy6/Dhx4679pKh+KATjHpkM+iNWmy/zkl28Iv798pt8k+Zf7 root@linuxmint"
 
   package_format: rpm
 # package_format: [rpm|tgz]
 
   package_file: splunk-6.3.2-aaff59bb082c-linux-2.6-x86_64.rpm
-# package_file: splunk-6.3.2-aaff59bb082c-Linux-x86_64.tgz
+#  package_file: splunk-6.3.2-aaff59bb082c-Linux-x86_64.tgz
   remote_package_temp_path: /tmp
   delete_package_after_install: false
 
