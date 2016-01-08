@@ -18,6 +18,14 @@
     file: path="{{ splunk_repository.repository_root }}/distServerKeys"
           state=directory
 
+  - name: Create licenses directory
+    file: path="{{ splunk_repository.repository_root }}/licenses"
+          state=directory
+
+  - name: Create licenses/enterprise directory
+    file: path="{{ splunk_repository.repository_root }}/licenses/enterprise"
+          state=directory   
+
   - name: Set repository owner/group
     file: path={{ splunk_repository.repository_root }} 
           recurse=yes 
