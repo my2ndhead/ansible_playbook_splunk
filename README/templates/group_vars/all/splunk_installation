@@ -22,7 +22,7 @@ splunk_installation:
   splunk_secret: 9uaY9Z02G69pWDMd6lUQGRISmgoRllMloZTsUf3EN/aV4Tp2F5EZynoNYEyEakTrrFhnUrti/f23DdziWTGU6WGJkPnJ07uxYDByH0dLKMjWjpPGxeOZ5WHt3D3dF5qyryO27KBWJ3ZWBMfUow85cX/0RHRIQv3C28q8R7m17YUVhsv6b8CVfG/kWIVqTdpcR.jElzKYv75X2GdRgvLyBDWLC7KplnOgmaiZ0bfpaNlEV.Yp4acowkHqH4USRb
   
   firewalld_open_port:
-    port: "8000/tcp"
-    port: "8089/tcp"
-    port: "9997/tcp"
-    port: "9888/tcp"
+    - "8000/tcp"
+    - "8089/tcp"
+    - "9997/tcp"
+    - "9888/tcp"
