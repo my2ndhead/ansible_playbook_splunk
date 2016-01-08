@@ -5,4 +5,4 @@
              permanent=true
              state=enabled 
   when: splunk_installation.firewalld_open_port is defined
-  with_items: splunk_installation.firewalld_open_port | default({})
+  with_items: splunk_installation.firewalld_open_port | default()

@@ -3,5 +3,12 @@
 # Copy Enterprise License Keys
 #####################################################################################################################
 
+- name: Create licenses/enterprise directory
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/licenses/enterprise"
+        state=directory
+        mode=700
+        owner=splunk
+        group=splunk
+
 - name: Copy Enterprise License Keys to Licensemaster
   local_action: "shell scp -r {{ splunk_repository.repository_root }}/licenses/enterprise/* splunk@{{ inventory_hostname }}:{{ splunk_installation.splunk_home_path }}/etc/licenses/enterprise"
