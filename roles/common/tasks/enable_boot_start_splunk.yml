@@ -1,9 +1,8 @@
 ---
 
-- name: Check if boot-start already enabled
-  stat: path=/etc/init.d/splunk
-  register: has_rc_script
+- name: Remove existing init.d script
+  file: path=/etc/init.d/splunk
+        state=absent
 
 - name: Enable Splunk boot-start
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk enable boot-start -user splunk --answer-yes --accept-license"
-  when: has_rc_script.stat.exists == False
