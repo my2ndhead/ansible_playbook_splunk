@@ -8,7 +8,7 @@
 
 splunk_server_conf:
   general:
-    pass4Symmkey: <password>
+    pass4SymmKey: <password>
     * Encrypted password
 
     site: [dynamic|<site>]
