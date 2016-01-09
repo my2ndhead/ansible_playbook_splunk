@@ -1,25 +1,50 @@
 ---
 
-- name: Configure app files
+- name: Configure app files (local/*.conf)
   copy: src="{{ item }}"
         dest="{{ splunk_installation.splunk_home_path }}/etc/apps/{{ app_name }}/local/"
   when: "{{ app_name }}.apps is defined"
   with_fileglob: apps/local/*.conf
 
-- name: Configure deployment-app files
+- name: Configure deployment-app files (local/*.conf)
   copy: src="{{ item }}"
         dest="{{ splunk_installation.splunk_home_path }}/etc/deployment-apps/{{ app_name }}/local/"
   when: "{{ app_name }}.deployment_apps is defined"
   with_fileglob: deployment-apps/local/*.conf
 
-- name: Configure shcluster/apps files
+- name: Configure shcluster/apps files (local/*.conf)
   copy: src="{{ item }}"
         dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/{{ app_name }}/local/"
   when: "{{ app_name }}.shcluster/apps is defined"
   with_fileglob: shcluster/apps/local/*.conf
 
-- name: Configure master-apps files
+- name: Configure master-apps files (local/*.conf)
   copy: src="{{ item }}"
         dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/{{ app_name }}/local/"
   when: "{{ app_name }}.master_apps is defined"
   with_fileglob: master-apps/local/*.conf
+
+- name: Configure app permission file (metadata/local.meta)
+  copy: src="{{ item }}"
+        dest="{{ splunk_installation.splunk_home_path }}/etc/apps/{{ app_name }}/metadata/"
+  when: "{{ app_name }}.apps is defined"
+  with_fileglob: apps/metadata/local.meta
+
+- name: Configure deployment-app permission file (metadata/local.meta)
+  copy: src="{{ item }}"
+        dest="{{ splunk_installation.splunk_home_path }}/etc/deployment-apps/{{ app_name }}/metadata/"
+  when: "{{ app_name }}.deployment_apps is defined"
+  with_fileglob: deployment-apps/metadata/local.meta
+
+- name: Configure shcluster/apps permission file (metadata/local.meta)
+  copy: src="{{ item }}"
+        dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/{{ app_name }}/metadata/"
+  when: "{{ app_name }}.shcluster/apps is defined"
+  with_fileglob: shcluster/apps/metadata/local.meta
+
+- name: Configure master-apps permission file (metadata/local.meta)
+  copy: src="{{ item }}"
+        dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/{{ app_name }}/metadata/"
+  when: "{{ app_name }}.master_apps is defined"
+  with_fileglob: master-apps/metadata/local.meta
+
