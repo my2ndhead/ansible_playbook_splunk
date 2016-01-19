@@ -1,9 +1,9 @@
 - name: Configure splunk searchheads
-  hosts: searchheads
+  hosts: searchhead
   user: splunk
 
   roles:
-    - searchhead
+    - group/searchhead
     - conf/web
     - conf/outputs
     - conf/server
