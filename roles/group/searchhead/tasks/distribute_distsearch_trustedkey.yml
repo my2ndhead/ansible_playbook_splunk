@@ -3,16 +3,6 @@
 # Distribute Keys for Distributed Search
 #####################################################################################################################
 
-#- name: Create distServerKeys Directory
-#  local_action: "command  ssh splunk@{{ item }} 'mkdir -p {{ splunk_installation.splunk_home_path }}/etc/auth/distServerKeys/{{ inventory_hostname }}'"
-#  with_items: "{{ splunk_distsearch_conf.distributedSearch.servers | create_distsearch_serverlist }}"
-
-#- name: Copy Keys for distributed search
-#  local_action: "command scp {{ splunk_repository.repository_root }}/distServerKeys/{{ inventory_hostname }}/trusted.pem splunk@{{ item }}:{{ splunk_installation.splunk_home_path }}/etc/auth/distServerKeys/{{ inventory_hostname }}/trusted.pem"
-#  with_items: "{{ splunk_distsearch_conf.distributedSearch.servers | create_distsearch_serverlist }}"
-
 - name: Copy Keys for distributed search
   local_action: "shell scp -r {{ splunk_repository.repository_root }}/distServerKeys/{{ inventory_hostname_short }}* splunk@{{ item }}:{{ splunk_installation.splunk_home_path }}/etc/auth/distServerKeys"
   with_items: "{{ splunk_distsearch_conf.distributedSearch.servers | create_distsearch_serverlist }}"
-
-
