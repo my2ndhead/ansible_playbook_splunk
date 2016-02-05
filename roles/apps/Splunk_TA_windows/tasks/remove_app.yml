@@ -1,8 +1,8 @@
 ---
 
 - name: Remove app
-  file: path="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('_', '-') }}/{{ app_name }}"
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('shcluster_apps', 'shcluster/apps') | replace('_', '-') }}/{{ app_name }}"
         state=absent
   when: "{{ item.value.install }} is defined and
         {{ item.value.install }} == false"
-  with_dict: "{{ app_name }} | default({})"
+  with_dict: "{{ vars[app_name] | default({}) }}"

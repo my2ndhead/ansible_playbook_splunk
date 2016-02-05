@@ -4,24 +4,24 @@
   copy: src="{{ splunk_repository.repository_root }}/apps/{{ app_name }}/{{ item.value.bundle }}"
         dest="/{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ app_name }} | default({})"
+  with_dict: "{{ vars[app_name] | default({}) }}"
 
 - name: Clean existing app directory
-  file: path="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('_', '-') }}/{{ app_name }}"
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('shcluster_apps', 'shcluster/apps') | replace('_', '-') }}/{{ app_name }}"
         state=absent
   when: "{{ item.value.clean_install }} is defined and
         {{ item.value.clean_install }} == true"
-  with_dict: "{{ app_name }} | default({})"
+  with_dict: "{{ vars[app_name] | default({}) }}"
 
 - name: Unarchive app
   unarchive: src="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
-             dest="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('_', '-') }}"
+             dest="{{ splunk_installation.splunk_home_path }}/etc/{{ item.key | replace('shcluster_apps', 'shcluster/apps') | replace('_', '-') }}"
              copy=no
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ app_name }} | default({})"
-        
+  with_dict: "{{ vars[app_name] | default({}) }}"
+
 - name: Remove temporary file 
   file: path="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
         state=absent
   when: "{{ item.value.install }} == true"
-  with_dict: "{{ app_name }} | default({})"
+  with_dict: "{{ vars[app_name] | default({}) }}"
