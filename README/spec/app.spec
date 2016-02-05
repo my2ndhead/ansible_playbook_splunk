@@ -7,9 +7,9 @@
 <appname>
 * Application Name (Path name)
 
-  [apps|deployment_apps|master_apps|shcluster/apps]:
+  [apps|deployment_apps|master_apps|shcluster_apps]:
   * Installation destination
-  * Note: Underscore instead of dash needed due to YAML Syntax
+  * Note: Underscore instead of dash/slash needed due to YAML Syntax
 
     install: <bool>
     * Should the app be installed.

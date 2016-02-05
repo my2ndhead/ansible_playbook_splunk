@@ -4,7 +4,7 @@
 #####################################################################################################################
 
 Splunk_TA_nix:
-  shcluster/apps:
+  shcluster_apps:
     install: true
     clean_install: true
     bundle: "splunk-add-on-for-unix-and-linux_520.tgz"

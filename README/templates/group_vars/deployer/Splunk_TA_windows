@@ -4,7 +4,7 @@
 #####################################################################################################################
 
 Splunk_TA_windows:
-  shcluster/apps:
+  shcluster_apps:
     install: true
     clean_install: true
     bundle: "splunk-add-on-for-microsoft-windows_480.tgz"
