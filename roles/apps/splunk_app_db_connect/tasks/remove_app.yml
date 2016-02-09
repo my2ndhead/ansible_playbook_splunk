@@ -5,4 +5,4 @@
         state=absent
   when: "{{ item.value.install }} is defined and
         {{ item.value.install }} == false"
-  with_dict: "{{ vars['app_name'] | default({}) }}"
+  with_dict: "{{ vars['app_name'] }} | app_default"
