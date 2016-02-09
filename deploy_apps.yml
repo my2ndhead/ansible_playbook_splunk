@@ -1,5 +1,5 @@
 - name: Deploy Apps
-  hosts: deploymentserver:deployer:masternode:heavyforwarder
+  hosts: "*:!repository"
   user: splunk
 
   roles:
