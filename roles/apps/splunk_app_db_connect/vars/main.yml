@@ -1,2 +1,3 @@
 ---
 app_name: splunk_app_db_connect
+app_variable: splunk_app_db_connect
