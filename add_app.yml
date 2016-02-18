@@ -1,0 +1,33 @@
+---
+- hosts: repository
+  
+  vars_prompt:
+    - name: "app_name"
+      prompt: "App Name (App Directory)"
+      private: no
+
+    - name: "app_variable"
+      prompt: "App Variable used in group_vars"
+      private: no
+
+  tasks:
+  - name: Copy template app template
+    command: cp -RfT roles/apps/app.template roles/apps/{{ app_name }} 
+ 
+  - name: Set app variables
+    template: src=roles/apps/{{ app_name }}/vars/main.yml.j2
+              dest=roles/apps/{{ app_name }}/vars/main.yml
+              mode=0640
+
+  - name: Remove template file
+    file: path=roles/apps/{{ app_name }}/vars/main.yml.j2
+          state=absent
+ 
+  - name: Find app roles
+    command: "ls roles/apps"
+    register: app_roles
+ 
+  - name: Create deploy_apps.yml
+    template: src=roles/common/templates/deploy_apps.yml.j2
+              dest=./deploy_apps.yml
+              mode=0640

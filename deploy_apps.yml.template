@@ -1,8 +1,0 @@
-- name: Deploy Apps
-  hosts: "*:!repository"
-  user: splunk
-
-  roles:
-    - apps/splunk_app_db_connect
-    - apps/Splunk_TA_windows
-    - apps/Splunk_TA_nix

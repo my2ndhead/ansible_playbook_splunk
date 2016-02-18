@@ -36,3 +36,11 @@
     file: path={{ splunk_repository.repository_root }} 
           mode=750
 
+  - name: Find app roles
+    command: "ls roles/apps"
+    register: app_roles
+ 
+  - name: Create deploy_apps.yml
+    template: src=roles/common/templates/deploy_apps.yml.j2
+              dest=./deploy_apps.yml
+              mode=0640
