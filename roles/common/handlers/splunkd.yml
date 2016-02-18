@@ -14,3 +14,20 @@
   when: splunk_restart is defined and
         splunk_restart
         
+- name: splunk reload deploy-server
+  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk reload deploy-server -auth {{ splunk_user }}:{{ splunk_password }}"
+  when: splunk_reload_deploy_server is defined and
+        splunk_reload_deploy_server and
+        inventory_hostname in groups['deploymentserver']
+
+- name: splunk apply cluster-bundle
+  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply cluster-bundle --answer-yes -auth {{ splunk_user }}:{{ splunk_password }}"
+  when: splunk_apply_cluster_bundle is defined and
+        splunk_apply_cluster_bundle and
+        inventory_hostname in groups['masternode']
+
+- name: splunk apply shcluster-bundle
+  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply shcluster-bundle -target https://{{ groups['shcmember'][0] }}:8089 --answer-yes -auth {{ splunk_user }}:{{ splunk_password }}"
+  when: splunk_apply_shcluster_bundle is defined and
+        splunk_apply_shcluster_bundle and
+        inventory_hostname in groups['deployer']

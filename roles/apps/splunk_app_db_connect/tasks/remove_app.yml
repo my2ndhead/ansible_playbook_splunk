@@ -6,3 +6,7 @@
   when: "{{ item.value.install }} is defined and
         {{ item.value.install }} == false"
   with_dict: "{{ vars['app_variable'] }} | app_default"
+  notify: 
+    - splunk reload deploy-server 
+    - splunk apply cluster-bundle
+    - splunk apply shcluster-bundle

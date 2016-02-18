@@ -22,6 +22,10 @@
   when: "item.value.install == true and
         item.value.bundle is defined"
   with_dict: "{{ vars['app_variable'] }} | app_default"
+  notify: 
+    - splunk reload deploy-server 
+    - splunk apply cluster-bundle
+    - splunk apply shcluster-bundle
 
 - name: Remove temporary file 
   file: path="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
