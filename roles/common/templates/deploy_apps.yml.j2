@@ -3,12 +3,12 @@
   user: splunk
   
   vars_prompt:
-  - name: "splunk_user"
-    prompt: "Splunk Admin User"
-    private: no
-  - name: "splunk_password"
-    prompt: "Splunk Password"
-    private: yes
+    - name: "splunk_user"
+      prompt: "Splunk Admin User"
+      private: no
+    - name: "splunk_password"
+      prompt: "Splunk Password"
+      private: yes
 
   roles:
 {{ app_roles.stdout_lines | app_role_list | to_nice_yaml | indent(4, true) }}
