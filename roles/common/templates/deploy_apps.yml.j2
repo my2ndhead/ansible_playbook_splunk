@@ -3,4 +3,4 @@
   user: splunk
 
   roles:
-{{ app_roles.stdout_lines | to_nice_yaml | indent(4, true) }}
+{{ app_roles.stdout_lines | app_role_list | to_nice_yaml | indent(4, true) }}
