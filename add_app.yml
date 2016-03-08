@@ -6,7 +6,15 @@
       prompt: "App Name (App Directory)"
       private: no
 
+    - name: "app2group"
+      prompt: "\n2) Target group (mandatory)\n   (Example: heavyforwarder)\n   Your answer"
+      private: no
+
   tasks:
+  - name: Check user input
+    fail: msg="A required value is empty. Please restart playbook and ensure all mandatory fields are defined."
+    when: app2group is not defined or app_name is not defined
+
   - name: Convert to ansible friendly name
     set_fact:
         app_variable: "{{ app_name | regex_replace('-', '_')}}"
@@ -17,6 +25,11 @@
   - name: Set app variables
     template: src=roles/apps/{{ app_name }}/vars/main.yml.j2
               dest=roles/apps/{{ app_name }}/vars/main.yml
+              mode=0640
+
+  - name: Set app variables within group_vars
+    template: src=roles/common/templates/add_app_groupvars.j2
+              dest=group_vars/{{ app2group }}/{{ app_name }}
               mode=0640
 
   - name: Remove template file
