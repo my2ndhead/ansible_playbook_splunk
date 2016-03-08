@@ -6,11 +6,11 @@
       prompt: "App Name (App Directory)"
       private: no
 
-    - name: "app_variable"
-      prompt: "App Variable used in group_vars"
-      private: no
-
   tasks:
+  - name: Convert to ansible friendly name
+    set_fact:
+        app_variable: "{{ app_name | regex_replace('-', '_')}}"
+
   - name: Copy template app template
     command: cp -RfT roles/apps/app.template roles/apps/{{ app_name }} 
  
