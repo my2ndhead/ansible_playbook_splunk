@@ -3,12 +3,16 @@
   
   vars_prompt:
     - name: "app_name"
-      prompt: "App Name (App Directory)"
+      prompt: "\n1) App file name or git repo name (mandatory)\n   (Example: TA-my-app)\n   Your answer"
       private: no
 
     - name: "app2group"
       prompt: "\n2) Target group (mandatory)\n   (Example: heavyforwarder)\n   Your answer"
       private: no
+
+  pre_tasks:
+    - include_vars: group_vars/all/splunk_repository
+    - include_vars: group_vars/{{ app2group }}/deployment
 
   tasks:
   - name: Check user input
