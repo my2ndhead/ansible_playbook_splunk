@@ -1,5 +1,5 @@
 # Ansible Playbook for Splunk
-- **Authors**:	Mika Borner <mika.borner@gmail.com>
+- **Authors**:	Mika Borner <mika.borner@gmail.com>, Thomas Fischer <mail@se-di.de>
 - **Description**:	Ansible Playbook for Splunk
 - **Version**: 		1.0
 
