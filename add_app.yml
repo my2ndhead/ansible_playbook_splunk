@@ -16,8 +16,10 @@
 
   tasks:
   - name: Check user input
-    fail: msg="A required value is empty. Please restart playbook and ensure all mandatory fields are defined."
-    when: app2group is not defined or app_name is not defined
+    fail: msg="A required value is empty ==> '{{ item }}' <===. Please restart and ensure you set all mandatory fields!"
+    with_items: [ app_name, app2group ]
+    when: "{{ item }} is not defined
+          or ({{item}} is defined and {{ item }} == '')"
 
   - name: Convert to ansible friendly name
     set_fact:
