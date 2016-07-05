@@ -1,6 +1,8 @@
 def app_role_list (app):
   
-  if "app.template" in app: app.remove("app.template")
+  aignore = [ 'app.template','files','tasks','vars' ]
+  for lsapp in aignore:
+        if lsapp in app: app.remove(lsapp)
 
   rolepath = 'apps/'
 

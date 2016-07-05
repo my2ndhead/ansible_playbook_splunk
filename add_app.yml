@@ -1,22 +1,56 @@
 ---
 - hosts: repository
-  
+
   vars_prompt:
     - name: "app_name"
-      prompt: "App Name (App Directory)"
+      prompt: "\n1) Repository directory name or git repo name (mandatory)\n   --> Repository location is defined in 'group_vars/all/splunk_repository'\n   (Example: TA-my-app or Splunk_TA-xxx)\n   Your answer"
       private: no
 
-    - name: "app_variable"
-      prompt: "App Variable used in group_vars"
+    - name: "app2group"
+      prompt: "\n2) Target group (mandatory)\n   (Example: heavyforwarder)\n   Your answer"
       private: no
+
+    - name: "filename"
+      prompt: "\n3) Repository full filename (optional)\n   (Example: splunk-addon-xxx-v1.2.tgz) Leave empty if you want to use git\n   Your answer"
+      private: no
+
+  pre_tasks:
+    - include_vars: group_vars/all/splunk_repository
+    - include_vars: group_vars/{{ app2group }}/deployment
 
   tasks:
+  - name: Building full file path if defined
+    stat: path={{splunk_repository.repository_root}}/apps/{{ app_name }}/{{ filename }}
+    register: fqfilename
+    when: filename is defined
+
+  - name: Display filename properties (filled when app is not git)
+    debug: 
+       var: fqfilename.stat.path, fqfilename.stat.size
+    when: fqfilename is defined
+
+  - name: Check user input
+    fail: msg="A required value is empty or wrong ==> '{{ item }}' <===. Please restart and ensure all mandatory fields are set!"
+    with_items: [ app_name, app2group, filename ]
+    when: "(item == 'filename' and {{ item }} !='' and (fqfilename.stat.exists != true or fqfilename.stat.isreg != true or fqfilename.stat.size < 100))
+          or (item is not defined and item != 'filename') 
+          or (item is defined and {{ item }} == '' and item != 'filename')"
+
+  - name: Convert to ansible friendly name
+    set_fact:
+        app_variable: "{{ app_name | regex_replace('-', '_')}}"
+
   - name: Copy template app template
     command: cp -RfT roles/apps/app.template roles/apps/{{ app_name }} 
- 
+
   - name: Set app variables
     template: src=roles/apps/{{ app_name }}/vars/main.yml.j2
               dest=roles/apps/{{ app_name }}/vars/main.yml
+              mode=0640
+
+  - name: Set app variables within group_vars
+    template: src=roles/common/templates/add_app_groupvars.j2
+              dest=group_vars/{{ app2group }}/{{ app_name }}
               mode=0640
 
   - name: Remove template file
@@ -26,8 +60,10 @@
   - name: Find app roles
     command: "ls roles/apps"
     register: app_roles
- 
+
   - name: Create deploy_apps.yml
     template: src=roles/common/templates/deploy_apps.yml.j2
               dest=./deploy_apps.yml
               mode=0640
+
+
