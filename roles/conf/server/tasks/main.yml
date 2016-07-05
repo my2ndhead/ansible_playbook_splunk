@@ -9,6 +9,7 @@
 - include: clustering/search_factor.yml
 - include: clustering/site_replication_factor.yml
 - include: diskUsage/minFreeSpace.yml
+- include: general/parallelIngestionPipelines.yml
 - include: general/pass4SymmKey.yml
 - include: general/site.yml
 - include: general/trustedIP.yml

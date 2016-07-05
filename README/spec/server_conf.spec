@@ -8,6 +8,12 @@
 
 splunk_server_conf:
   general:
+   
+    parallelIngestionPipelines: <integer>
+    * Data being loaded into splunk, whether for indexing or forwarding, progresses through a series of steps arranged into "pipelines".
+      By setting this to more than one, more processor threads can be set up to perform this work.
+    * Defaults to 1
+
     pass4SymmKey: <password>
     * Encrypted password
 

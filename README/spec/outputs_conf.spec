@@ -39,6 +39,10 @@ splunk_outputs_conf:
 
         indexerDiscovery: <name>
         * Instructs the forwarder to fetch the list of indexers from the master node specified in the corresponding [indexer_discovery:<name>] stanza.
+ 
+        forceTimebasedAutoLB: [true|false]
+        * Will force existing streams to switch to newly elected indexer every AutoLB cycle.
+        * Defaults to false
 
       [target_groupN:]
       ...

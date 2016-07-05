@@ -1,0 +1,28 @@
+---
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [general]
+#####################################################################################################################
+
+# parallelIngestionPipelines
+
+- name: "Configure server.conf [general] - parallelIngestionPipelines state=present (static)"
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=general
+            option=parallelIngestionPipelines
+            value={{ splunk_server_conf.general.parallelIngestionPipelines }}
+            state=present
+  when: splunk_server_conf.general.parallelIngestionPipelines is defined and
+        splunk_server_conf.general.parallelIngestionPipelines != "1"
+  notify: splunk restart
+
+- name: "Configure server.conf [general] - parallelIngestionPipelines state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=general
+            option=parallelIngestionPipelines
+            state=absent
+  when: splunk_server_conf.general.parallelIngestionPipelines is undefined
+  notify: splunk restart
