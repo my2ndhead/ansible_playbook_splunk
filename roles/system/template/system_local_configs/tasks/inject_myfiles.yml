@@ -1,0 +1,18 @@
+---
+# THIS GETS OVERWRITTEN EACH RUN FROM: roles/system/template/ DIRECTORY! 
+- name: set the var according to the users setting
+  set_fact: shouldinstall="{{ item.value.install }}"
+  when: item.key == "system"
+  with_dict: "{{ vars['app_variable'] }} |app_default"
+
+- name: Prepare local files (local/*.conf)
+  local_action: 
+        module: lineinfile
+        dest: "{{ item }}" 
+        regexp: "^#+ ANSIBLE FILE-MANAGED - DO NOT TOUCH WITHOUT ANSIBLE.*"
+        state: present
+        line: "########## ANSIBLE FILE-MANAGED - DO NOT TOUCH WITHOUT ANSIBLE (last run initiated from: {{ ansible_conf.host }}) ##########\n"
+        insertbefore: BOF
+  with_fileglob: system/local/*.conf
+
+

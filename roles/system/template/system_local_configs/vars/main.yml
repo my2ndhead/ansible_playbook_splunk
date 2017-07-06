@@ -1,0 +1,5 @@
+---
+# Change to app name
+app_name: system_local_configs 
+# Change to app variable name. Must not contain dashes (-). Must be the same variable as defined in group_vars for app. This is due to variable name restrictions.
+app_variable: system_local_configs

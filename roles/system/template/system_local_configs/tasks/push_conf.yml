@@ -1,0 +1,8 @@
+---
+# THIS GETS OVERWRITTEN EACH RUN FROM: roles/system/template/ DIRECTORY! 
+
+- name: Copy conf to remote host
+  copy: src="{{ item }}"
+        dest="/{{ splunk_conf_path }}/"
+  with_fileglob: system/local/*.conf
+

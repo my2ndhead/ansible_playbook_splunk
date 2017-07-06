@@ -1,0 +1,7 @@
+---
+# THIS GETS OVERWRITTEN EACH RUN FROM: roles/system/template/ DIRECTORY! 
+- include: ../../../../../common/handlers/splunkd.yml
+- include: inject_myfiles.yml
+- include: configure_local.yml
+- include: remove_conf_files.yml
+- include: push_conf.yml

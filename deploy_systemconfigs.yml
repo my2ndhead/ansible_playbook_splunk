@@ -1,0 +1,9 @@
+- name: Deploy System Configs
+  hosts: "{{ exp_host }}"
+  user: splunk
+
+  pre_tasks:
+    - include_vars: group_vars/all/ansible
+
+  roles:
+    - system/{{ target }}/{{ exp_host }}/system_local_configs
