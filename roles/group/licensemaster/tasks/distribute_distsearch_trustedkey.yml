@@ -1,0 +1,8 @@
+---
+#####################################################################################################################
+# Distribute Keys for Distributed Search
+#####################################################################################################################
+
+- name: Copy Keys for distributed search
+  local_action: "shell scp -r {{ splunk_repository.repository_root }}/distServerKeys/{{ inventory_hostname_short }}* splunk@{{ item }}:{{ splunk_installation.splunk_home_path }}/etc/auth/distServerKeys"
+  with_items: "{{ splunk_distsearch_conf.distributedSearch.servers | create_distsearch_serverlist }}"
