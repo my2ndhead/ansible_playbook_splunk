@@ -3,6 +3,7 @@
 - **Description**:	Ansible Playbook for Splunk
 - **Version**: 		1.0
 
+- **updated to Ansible 2.7**: Alex Klippert <alex.klippert@lcsystems.de>
 
 # Instructions
 
