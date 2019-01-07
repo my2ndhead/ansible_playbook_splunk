@@ -6,3 +6,5 @@
 - name: Run init shcluster-config
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk init shcluster-config -mgmt_uri https://{{ inventory_hostname }}:8089 -replication_port 9888 -shcluster_label {{ splunk_server_conf.shclustering.shcluster_label }} -auth admin:{{ splunk_installation.admin_password }}"
 
+- name: Splunk restart
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
