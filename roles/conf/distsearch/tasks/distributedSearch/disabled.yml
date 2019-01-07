@@ -15,8 +15,10 @@
             option=disabled
             value={{ splunk_distsearch_conf.distributedSearch.disabled }}
             state=present
-  when: splunk_distsearch_conf.distributedSearch.disabled is defined and
-        splunk_distsearch_conf.distributedSearch.disabled == true
+  when:
+      - splunk_distsearch_conf.distributedSearch is defined 
+      - splunk_distsearch_conf.distributedSearch.disabled is defined
+      - splunk_distsearch_conf.distributedSearch.disabled == true
   notify: splunk restart
 
 - name: "Configure distsearch.conf [distributedSearch] - disabled state=absent (default)"
@@ -24,6 +26,7 @@
             section=distributedSearch
             option=disabled
             state=absent
-  when:  splunk_distsearch_conf.distributedSearch.disabled is undefined or 
+  when:  splunk_distsearch_conf.distributedSearch is undefined or 
+         splunk_distsearch_conf.distributedSearch.disabled is undefined or 
          splunk_distsearch_conf.distributedSearch.disabled == false
   notify: splunk restart

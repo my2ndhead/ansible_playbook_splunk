@@ -15,7 +15,9 @@
             option=id
             value={{ splunk_server_conf.shclustering.id }}
             state=present
-  when: splunk_server_conf.shclustering.id is defined
+  when: 
+      - splunk_server_conf.shclustering is defined
+      - splunk_server_conf.shclustering.id is defined
   notify: splunk restart
 
 - name: "Configure server.conf [shclustering] - id state=absent"
@@ -23,5 +25,6 @@
             section=shclustering
             option=id
             state=absent
-  when: splunk_server_conf.shclustering.id is undefined
+  when: splunk_server_conf.shclustering is undefined or
+        splunk_server_conf.shclustering.id is undefined
   notify: splunk restart

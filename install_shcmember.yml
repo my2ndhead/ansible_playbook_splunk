@@ -6,10 +6,10 @@
     - conf/web
     - conf/outputs
     - conf/server
+    - group/searchhead
     - group/shcmember
-    - conf/server
 
   post_tasks:
     - name: Run splunk restart
       command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
-      when: splunk_server_conf.general.shcluster.id is defined
+

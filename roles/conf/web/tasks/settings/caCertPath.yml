@@ -15,8 +15,10 @@
             option=caCertPath
             value={{ splunk_web_conf.settings.caCertPath }}
             state=present
-  when: splunk_web_conf.settings.caCertPath is defined and
-        splunk_web_conf.settings.caCertPath != "etc/auth/splunkweb/cert.pem"
+  when: 
+      - splunk_web_conf.settings is defined
+      - splunk_web_conf.settings.caCertPath is defined
+      - splunk_web_conf.settings.caCertPath != "etc/auth/splunkweb/cert.pem"
   notify: splunk restart
 
 - name: "Configure web.conf [settings] - caCertPath state=absent (default)"
@@ -24,6 +26,8 @@
             section=settings
             option=caCertPath
             state=absent
-  when: splunk_web_conf.settings.caCertPath is undefined or
+  when: 
+        splunk_web_conf.settings is undefined or
+        splunk_web_conf.settings.caCertPath is undefined or
         splunk_web_conf.settings.caCertPath == "etc/auth/splunkweb/cert.pem"
   notify: splunk restart

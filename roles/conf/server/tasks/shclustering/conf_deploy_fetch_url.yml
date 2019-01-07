@@ -15,8 +15,10 @@
             option=conf_deploy_fetch_url
             value="https://{{ groups['deployer'][0] }}:8089"
             state=present
-  when: splunk_server_conf.shclustering.conf_deploy_fetch_url is defined and
-        splunk_server_conf.shclustering.conf_deploy_fetch_url == "dynamic"
+  when: 
+      - splunk_server_conf.shclustering is defined
+      - splunk_server_conf.shclustering.conf_deploy_fetch_url is defined
+      - splunk_server_conf.shclustering.conf_deploy_fetch_url == "dynamic"
   notify: splunk restart
 
 - name: "Configure server.conf [shclustering] - shclustering conf_deploy_fetch_url state=present (static)"
@@ -25,8 +27,10 @@
             option=conf_deploy_fetch_url
             value={{ splunk_server_conf.shclustering.conf_deploy_fetch_url }}
             state=present
-  when: splunk_server_conf.shclustering.conf_deploy_fetch_url is defined and
-        splunk_server_conf.shclustering.conf_deploy_fetch_url != "dynamic"
+  when: 
+      - splunk_server_conf.shclustering is defined
+      - splunk_server_conf.shclustering.conf_deploy_fetch_url is defined 
+      - splunk_server_conf.shclustering.conf_deploy_fetch_url != "dynamic"
   notify: splunk restart
 
 - name: "Configure server.conf [shclustering] - shclustering conf_deploy_fetch_url state=absent"
@@ -34,5 +38,6 @@
             section=shclustering
             option=conf_deploy_fetch_url
             state=absent
-  when: splunk_server_conf.shclustering.conf_deploy_fetch_url is undefined
+  when: splunk_server_conf.shclustering is undefined or 
+      splunk_server_conf.shclustering.conf_deploy_fetch_url is undefined
   notify: splunk restart

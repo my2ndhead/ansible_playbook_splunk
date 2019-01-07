@@ -1,13 +1,14 @@
 ---
 - include: touch.yml
 - include: tcpout/defaultGroup.yml
-- include: tcpout:target_group/forceTimebasedAutoLB.yml
-- include: tcpout:target_group/indexerDiscovery.yml
-- include: tcpout:target_group/server.yml
-- include: tcpout:target_group/sslCertPath.yml
-- include: tcpout:target_group/sslPassword.yml
-- include: tcpout:target_group/sslRootCAPath.yml
-- include: tcpout:target_group/sslVerifyServerCert.yml
-- include: tcpout:target_group/useAck.yml
+- include: tcpout_target_group/forceTimebasedAutoLB.yml  #7.1 -> not neccessary
+- include: tcpout_target_group/indexerDiscovery.yml
+  when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri is defined
+- include: tcpout_target_group/server.yml
+- include: tcpout_target_group/sslCertPath.yml
+- include: tcpout_target_group/sslPassword.yml
+- include: tcpout_target_group/sslRootCAPath.yml
+- include: tcpout_target_group/sslVerifyServerCert.yml
+- include: tcpout_target_group/useAck.yml
 - include: indexer_discovery/pass4SymmKey.yml
 - include: indexer_discovery/master_uri.yml

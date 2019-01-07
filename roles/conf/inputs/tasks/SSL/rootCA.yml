@@ -15,7 +15,9 @@
             option=rootCA 
             value={{ splunk_inputs_conf.SSL.rootCA }}
             state=present
-  when: splunk_inputs_conf.SSL.rootCA is defined
+  when: 
+      - splunk_inputs_conf.SSL is defined
+      - splunk_inputs_conf.SSL.rootCA is defined
   notify: splunk restart
 
 - name: "Configure inputs.conf: Unset rootCA (default)"
@@ -23,5 +25,6 @@
             section=SSL 
             option=rootCA
             state=absent
-  when: splunk_inputs_conf.SSL.rootCA is undefined
+  when: splunk_inputs_conf.SSL is undefined or 
+        splunk_inputs_conf.SSL.rootCA is undefined
   notify: splunk restart

@@ -15,7 +15,9 @@
             option=mode
             value={{ splunk_server_conf.clustering.mode }}
             state=present
-  when: splunk_server_conf.clustering.mode is defined
+  when: 
+      - splunk_server_conf.clustering is defined
+      - splunk_server_conf.clustering.mode is defined
   notify: splunk restart
 
 - name: "Configure server.conf [clustering] - mode state=absent (default)"
@@ -23,7 +25,7 @@
             section=clustering
             option=mode
             state=absent
-  when: splunk_server_conf.clustering.mode is undefined or
+  when: splunk_server_conf.clustering is undefined or splunk_server_conf.clustering.mode is undefined or
         splunk_server_conf.clustering.mode == "disabled"
   notify: splunk restart
 

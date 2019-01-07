@@ -5,3 +5,7 @@ group_vars/*/*
 !group_vars/*/README
 *.pyc
 deploy_apps.yml
+!test_env/*
+test_env/*
+!hosts*
+hosts*

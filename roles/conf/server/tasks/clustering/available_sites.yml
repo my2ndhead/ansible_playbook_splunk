@@ -15,7 +15,9 @@
             option=available_sites
             value="{{ splunk_server_conf.clustering.available_sites }}"
             state=present
-  when: splunk_server_conf.clustering.available_sites is defined
+  when: 
+      - splunk_server_conf.clustering is defined
+      - splunk_server_conf.clustering.available_sites is defined
   notify: splunk restart
 
 - name: "Configure server.conf [clustering] - available_sites state=absent (default)"
@@ -23,6 +25,7 @@
             section=clustering
             option=available_sites
             state=absent
-  when: splunk_server_conf.clustering.site_replication_factor is undefined
+  when: splunk_server_conf.clustering is undefined or 
+        splunk_server_conf.clustering.available_sites is undefined
   notify: splunk restart
 

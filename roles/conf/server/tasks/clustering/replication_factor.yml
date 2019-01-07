@@ -15,8 +15,9 @@
             option=replication_factor
             value={{ splunk_server_conf.clustering.replication_factor }}
             state=present
-  when: splunk_server_conf.clustering.replication_factor is defined or
-        splunk_server_conf.clustering.replication_factor != 3
+  when: 
+      - splunk_server_conf.clustering is defined
+      - splunk_server_conf.clustering.replication_factor is defined
   notify: splunk restart
 
 - name: "Configure server.conf [clustering] - replication_factor state=absent (default)"
@@ -24,6 +25,7 @@
             section=clustering
             option=replication_factor
             state=absent
-  when: splunk_server_conf.clustering.replication_factor is undefined or
+  when: splunk_server_conf.clustering is undefined or 
+        splunk_server_conf.clustering.replication_factor is undefined or
         splunk_server_conf.clustering.replication_factor == 3
   notify: splunk restart

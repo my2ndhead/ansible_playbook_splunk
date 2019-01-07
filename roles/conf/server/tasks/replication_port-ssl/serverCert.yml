@@ -15,7 +15,9 @@
             option=serverCert
             value={{ splunk_server_conf.replication_port_ssl.serverCert }}
             state=present
-  when: splunk_server_conf.replication_port_ssl.serverCert is defined
+  when: 
+      - splunk_server_conf.replication_port_ssl is defined
+      - splunk_server_conf.replication_port_ssl.serverCert is defined
   notify: splunk restart
 
 - name: "Configure server.conf [replication_port-ssl:<port>] - serverCert state=absent (default)"
@@ -23,6 +25,7 @@
             section="replication_port-ssl://{{ splunk_server_conf.replication_port_ssl.port }}"
             option=serverCert
             state=absent
-  when: splunk_server_conf.replication_port_ssl is defined and
-        splunk_server_conf.replication_port_ssl.serverCert is undefined
+  when: 
+      - splunk_server_conf.replication_port_ssl is defined
+      - splunk_server_conf.replication_port_ssl.serverCert is undefined
   notify: splunk restart

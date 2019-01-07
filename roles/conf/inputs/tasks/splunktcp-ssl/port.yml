@@ -8,15 +8,18 @@
 #####################################################################################################################
 
 - name: "Configure inputs.conf [splunktcp-ssl:<port>] - splunktcp-ssl state=present"
-  ini_file: dest="{{ splunk_conf_path }}/inputs.conf"
-            section=splunktcp-ssl:{{ splunk_inputs_conf.splunktcp_ssl.port }}  
+  lineinfile: dest="{{ splunk_conf_path }}/inputs.conf"
+            line="[splunktcp-ssl://{{ splunk_inputs_conf.splunktcp_ssl.port }}]"
             state=present
-  when: splunk_inputs_conf.splunktcp_ssl.port is defined
+  when: 
+      - splunk_inputs_conf.splunktcp_ssl is defined
+      - splunk_inputs_conf.splunktcp_ssl.port is defined
   notify: splunk restart
 
 - name: "Configure inputs.conf [splunktcp-ssl:<port>] - splunktcp-ssl state=absent (default)"
   replace: dest="{{ splunk_conf_path }}/inputs.conf"
            regexp='\[splunktcp-ssl:\d+\]\n'
            replace=''
-  when: splunk_inputs_conf.splunktcp_ssl.port is undefined
+  when: splunk_inputs_conf.splunktcp_ssl is undefined or
+        splunk_inputs_conf.splunktcp_ssl.port is undefined
   notify: splunk restart
