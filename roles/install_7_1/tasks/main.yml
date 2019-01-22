@@ -1,5 +1,0 @@
----
-- include: install_splunk.yml   
-- include: set_splunk_secret.yml
-- include: set_admin_password.yml
-- include: fetch_distserverkeys.yml

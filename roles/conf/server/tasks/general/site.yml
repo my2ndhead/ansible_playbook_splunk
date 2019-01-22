@@ -16,6 +16,7 @@
             value={{ hostvars[inventory_hostname].splunk_site }}
             state=present
   when: 
+      - splunk_server_conf.general is defined
       - splunk_server_conf.general.site is defined
       - splunk_server_conf.general.site == "dynamic"
   notify: splunk restart
@@ -26,7 +27,8 @@
             option=site
             value={{ splunk_server_conf.general.site }}
             state=present
-  when: 
+  when:
+      - splunk_server_conf.general is defined
       - splunk_server_conf.general.site is defined
       - splunk_server_conf.general.site != "dynamic"
   notify: splunk restart
@@ -36,5 +38,6 @@
             section=general
             option=site
             state=absent
-  when: splunk_server_conf.general.site is undefined
+  when: splunk_server_conf.general is undefined or
+        splunk_server_conf.general.site is undefined
   notify: splunk restart

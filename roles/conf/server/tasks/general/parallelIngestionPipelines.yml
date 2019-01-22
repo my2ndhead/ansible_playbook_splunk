@@ -16,6 +16,7 @@
             value={{ splunk_server_conf.general.parallelIngestionPipelines }}
             state=present
   when: 
+      - splunk_server_conf.general is defined
       - splunk_server_conf.general.parallelIngestionPipelines is defined
       - splunk_server_conf.general.parallelIngestionPipelines != "1"
   notify: splunk restart
@@ -25,5 +26,6 @@
             section=general
             option=parallelIngestionPipelines
             state=absent
-  when: splunk_server_conf.general.parallelIngestionPipelines is undefined
+  when: splunk_server_conf.general is undefined or
+        splunk_server_conf.general.parallelIngestionPipelines is undefined
   notify: splunk restart

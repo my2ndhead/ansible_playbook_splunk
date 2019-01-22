@@ -1,7 +1,9 @@
 ---
+- include: ../../checks/tasks/check_splunk_version.yml
 - include: touch.yml
 - include: tcpout/defaultGroup.yml
 - include: tcpout_target_group/forceTimebasedAutoLB.yml  #7.1 -> not neccessary
+  when: splunkv7.matched is not defined
 - include: tcpout_target_group/indexerDiscovery.yml
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.master_uri is defined
 - include: tcpout_target_group/server.yml

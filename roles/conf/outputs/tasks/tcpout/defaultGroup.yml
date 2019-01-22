@@ -15,7 +15,9 @@
             option=defaultGroup
             value={{ splunk_outputs_conf.tcpout.defaultGroup }}
             state=present
-  when: splunk_outputs_conf.tcpout.defaultGroup is defined
+  when: 
+      - splunk_outputs_conf.tcpout is defined
+      - splunk_outputs_conf.tcpout.defaultGroup is defined
   notify: splunk restart
 
 - name: "Configure outputs.conf [tcpout] - defaultGroup state=absent (default)"
@@ -23,5 +25,6 @@
             section=tcpout
             option=defaultGroup
             state=absent
-  when: splunk_outputs_conf.tcpout.defaultGroup is undefined
+  when: splunk_outputs_conf.tcpout is undefined or 
+        splunk_outputs_conf.tcpout.defaultGroup is undefined
   notify: splunk restart

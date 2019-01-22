@@ -1,0 +1,13 @@
+---
+
+- name: Check for Splunk version 6.X
+  find:
+    paths: "{{ splunk_installation.splunk_home_path }}/"
+    patterns: "splunk-6.*manifest"
+  register: splunkv6
+
+- name: Check for Splunk version 7.X
+  find:
+    paths: "{{ splunk_installation.splunk_home_path }}/"
+    patterns: "splunk-7.*manifest"
+  register: splunkv7

@@ -16,7 +16,10 @@
             value={{ item.value.sslVerifyServerCert }}
             state=present
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
-  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert is defined and
+  when: 
+      - splunk_outputs_conf.tcpout is defined
+      - splunk_outputs_conf.tcpout.target_group is defined
+      - splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert is defined and
         splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert == true
   notify: splunk restart
 
@@ -26,6 +29,8 @@
             option=sslVerifyServerCert
             state=absent
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
-  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert is undefined or
+  when: splunk_outputs_conf.tcpout is undefined or 
+        splunk_outputs_conf.tcpout.target_group is undefined or
+        splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert is undefined or
         splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslVerifyServerCert != true
   notify: splunk restart

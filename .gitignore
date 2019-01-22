@@ -7,3 +7,4 @@ group_vars/*/*
 deploy_apps.yml
 !hosts*
 hosts*
+.vscode*

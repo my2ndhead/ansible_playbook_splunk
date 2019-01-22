@@ -16,7 +16,10 @@
             value={{ item.value.sslCertPath }}
             state=present
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
-  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslCertPath is defined
+  when: 
+      - splunk_outputs_conf.tcpout is defined
+      - splunk_outputs_conf.tcpout.target_group is defined  
+      - splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslCertPath is defined
   notify: splunk restart
 
 - name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - sslCertPath state=absent (default)"
@@ -25,5 +28,7 @@
             option=sslCertPath
             state=absent
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
-  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslCertPath is undefined
+  when: splunk_outputs_conf.tcpout is undefined or 
+        splunk_outputs_conf.tcpout.target_group is undefined or
+        splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslCertPath is undefined
   notify: splunk restart

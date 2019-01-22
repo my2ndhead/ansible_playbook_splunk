@@ -1,8 +1,0 @@
----
-#####################################################################################################################
-# Restart shcmembers
-#####################################################################################################################
-
-- name: Run splunk restart
-  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
-  when: splunk_server_conf.shclustering.id is defined

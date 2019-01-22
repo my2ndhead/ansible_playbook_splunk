@@ -1,8 +1,15 @@
 ---
 - include: install_splunk.yml
+  become: yes
+  become_user: root
+  
 - include: set_splunk_secret.yml
-- include: enable_boot_start_splunk.yml
+- include: ../../checks/tasks/check_splunk_version.yml
 - include: change_default_password.yml
+- include: enable_boot_start_splunk.yml
+  become: yes
+  become_user: root
+
 - include: add_authorized_key.yml
 - include: firewalld_open_splunkports.yml
 - include: splunk_ftb.yml

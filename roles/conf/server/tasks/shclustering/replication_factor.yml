@@ -26,6 +26,6 @@
             option=replication_factor
             state=absent
   when:  splunk_server_conf.shclustering is undefined or
-      splunk_server_conf.shclustering.replication_factor is undefined or
-      splunk_server_conf.shclustering.replication_factor == 3
+         splunk_server_conf.shclustering.replication_factor is undefined or
+         splunk_server_conf.shclustering.replication_factor == 3
   notify: splunk restart

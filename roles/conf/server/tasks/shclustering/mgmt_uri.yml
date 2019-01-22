@@ -39,5 +39,5 @@
             option=master_uri
             state=absent
   when: splunk_server_conf.shclustering is undefined or 
-      splunk_server_conf.shclustering.mgmt_uri is undefined
+        splunk_server_conf.shclustering.mgmt_uri is undefined
   notify: splunk restart

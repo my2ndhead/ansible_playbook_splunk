@@ -26,5 +26,5 @@
             option=pass4SymmKey
             state=absent
   when: splunk_server_conf.shclustering is undefined or 
-      splunk_server_conf.shclustering.pass4SymmKey is undefined
+        splunk_server_conf.shclustering.pass4SymmKey is undefined
   notify: splunk restart

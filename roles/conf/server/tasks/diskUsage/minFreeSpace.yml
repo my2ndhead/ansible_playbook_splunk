@@ -27,5 +27,5 @@
             option=minFreeSpace
             state=absent
   when: splunk_server_conf.diskUsage is undefined or
-      splunk_server_conf.diskUsage.minFreeSpace is undefined
+        splunk_server_conf.diskUsage.minFreeSpace is undefined
   notify: splunk restart
