@@ -15,8 +15,10 @@
             option=updateCheckerBaseURL
             value={{ splunk_web_conf.settings.updateCheckerBaseURL }}
             state=present
-  when: splunk_web_conf.settings.updateCheckerBaseURL is defined and 
-        splunk_web_conf.settings.updateCheckerBaseURL != "http://quickdraw.Splunk.com/js/"
+  when: 
+      - splunk_web_conf.settings is defined
+      - splunk_web_conf.settings.updateCheckerBaseURL is defined
+      - splunk_web_conf.settings.updateCheckerBaseURL != "http://quickdraw.Splunk.com/js/"
   notify: splunk restart
 
 - name: "Configure web.conf [settings] - unset updateCheckerBaseURL state=absent (default)"
@@ -24,6 +26,7 @@
             section=settings
             option=updateCheckerBaseURL
             state=absent
-  when: splunk_web_conf.settings.updateCheckerBaseURL is undefined or 
+  when: splunk_web_conf.settings is undefined or
+        splunk_web_conf.settings.updateCheckerBaseURL is undefined or 
         splunk_web_conf.settings.updateCheckerBaseURL == "http://quickdraw.Splunk.com/js/"
   notify: splunk restart

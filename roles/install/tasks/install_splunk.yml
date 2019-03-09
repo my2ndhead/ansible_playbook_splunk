@@ -1,20 +1,5 @@
 ---
 
-- name: Create Splunk unix group
-  group: name=splunk
-         state=present
-  when: splunk_installation.package_format != "rpm"
-
-- name: Create Splunk unix user
-  user: name=splunk 
-        group=splunk
-        state=present
-        comment="Splunk Server"
-        shell="/bin/bash"
-        home="/opt/splunk"
-        password="!!"
-  when: splunk_installation.package_format != "rpm"
-
 - name: Copy Splunk package
   copy: src="{{ splunk_repository.repository_root }}/packages/{{ splunk_installation.package_file }}"
         dest="/{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
@@ -37,7 +22,7 @@
 
 - name: Set permissions for $SPLUNK_HOME 
   file: path="{{ splunk_installation.splunk_home_path }}" 
-        owner=splunk
-        group=splunk
+        owner="{{splunk_installation.splunk_user}}"
+        group="{{splunk_installation.splunk_user}}"
         recurse=yes
   when: splunk_installation.package_format == "tgz"

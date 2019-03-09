@@ -7,11 +7,15 @@
 # [replication_port-ssl:<port>]
 #####################################################################################################################
 
-- name: "Configure server.conf [replication_port-ssl:<port>] - replication_port-ssl state=present"
-  ini_file: dest="{{ splunk_conf_path }}/server.conf"
+- name: "Configure server.conf [replication_port_ssl:<port>] - replication_port_ssl state=present"
+  ini_file: dest={{ splunk_conf_path }}/server.conf
             section="replication_port-ssl://{{ splunk_server_conf.replication_port_ssl.port }}"
+            option=port
+            allow_no_value=yes
             state=present
-  when: splunk_server_conf.replication_port_ssl.port is defined
+  when:
+      - splunk_server_conf.replication_port_ssl is defined
+      - splunk_server_conf.replication_port_ssl.port is defined
   notify: splunk restart
 
 - name: "Configure server.conf [replication_port-ssl:<port>] - replication_port-ssl check presence"
@@ -20,10 +24,11 @@
   changed_when: false
   notify: splunk restart
 
-- name: "Configure server.conf [replication_port-ssl:<port>] - replication_port-ssl state=absent (default)"
+- name: "Configure server.conf [replication_port_ssl:<port>] - replication_port_ssl state=absent (default)"
   ini_file: dest="{{ splunk_conf_path }}/server.conf"
             section="replication_port-ssl://{{ splunk_server_replication_port_ssl_port_inifile.stdout }}"
             state=absent
-  when: splunk_server_conf.replication_port_ssl.port is undefined and
-        splunk_server_replication_port_ssl_port_inifile.stdout != ""
+  when: 
+     - splunk_server_conf.replication_port_ssl is undefined
+     - splunk_server_replication_port_ssl_port_inifile.stdout | length == 0
   notify: splunk restart

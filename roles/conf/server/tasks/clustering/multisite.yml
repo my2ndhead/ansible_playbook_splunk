@@ -15,8 +15,10 @@
             option=multisite
             value={{ splunk_server_conf.clustering.multisite }}
             state=present
-  when: splunk_server_conf.clustering.multisite is defined or
-        splunk_server_conf.clustering.multisite == true
+  when: 
+      - splunk_server_conf.clustering is defined
+      - splunk_server_conf.clustering.multisite is defined
+      - splunk_server_conf.clustering.multisite == "true"
   notify: splunk restart
 
 - name: "Configure server.conf [clustering] - multisite state=absent (default)"
@@ -24,7 +26,7 @@
             section=clustering
             option=multisite
             state=absent
-  when: splunk_server_conf.clustering.multisite is undefined or
-        splunk_server_conf.clustering.multisite != true
+  when: splunk_server_conf.clustering is undefined or 
+        splunk_server_conf.clustering.multisite is undefined
   notify: splunk restart
 

@@ -3,6 +3,7 @@
 - name: Remove existing init.d script
   file: path=/etc/init.d/splunk
         state=absent
+  
 
 - name: Enable Splunk boot-start
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk enable boot-start -user splunk --answer-yes --accept-license"

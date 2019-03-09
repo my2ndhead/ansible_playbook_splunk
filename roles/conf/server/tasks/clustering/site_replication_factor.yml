@@ -9,22 +9,23 @@
 
 # site_replication_factor
 
-- name: "Configure server.conf [clustering] - site_replication_factor state=present"
+- name: "Configure server.conf [clustering] - site_replication_factor state=present & defined"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=site_replication_factor
             value="{{ splunk_server_conf.clustering.site_replication_factor }}"
             state=present
-  when: splunk_server_conf.clustering.site_replication_factor is defined or
-        splunk_server_conf.clustering.site_replication_factor != "origin:2, total:3"
-  notify: splunk restart
+  when: 
+      - splunk_server_conf.clustering is defined
+      - splunk_server_conf.clustering.site_replication_factor is defined
+
 
 - name: "Configure server.conf [clustering] - site_replication_factor state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=clustering
             option=site_replication_factor
             state=absent
-  when: splunk_server_conf.clustering.site_replication_factor is undefined or
+  when: splunk_server_conf.clustering is undefined or
+        splunk_server_conf.clustering.site_replication_factor is undefined or
         splunk_server_conf.clustering.site_replication_factor == "origin:2, total:3"
   notify: splunk restart
-

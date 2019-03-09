@@ -15,7 +15,9 @@
             option=pass4SymmKey
             value={{ splunk_server_conf.clustering.pass4SymmKey }}
             state=present
-  when: splunk_server_conf.clustering.pass4SymmKey is defined
+  when: 
+      - splunk_server_conf.clustering is defined
+      - splunk_server_conf.clustering.pass4SymmKey is defined
   notify: splunk restart
 
 - name: "Configure server.conf [clustering] - pass4SymmKey state=absent"
@@ -23,5 +25,6 @@
             section=clustering
             option=pass4SymmKey
             state=absent
-  when: splunk_server_conf.clustering.pass4SymmKey is undefined
+  when: splunk_server_conf.clustering is undefined or
+        splunk_server_conf.clustering.pass4SymmKey is undefined
   notify: splunk restart

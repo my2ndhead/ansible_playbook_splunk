@@ -15,7 +15,9 @@
             option=trustedIP
             value={{ splunk_server_conf.general.trustedIP }}
             state=present
-  when: splunk_server_conf.general.trustedIP is defined
+  when: 
+      - splunk_server_conf.general is defined
+      - splunk_server_conf.general.trustedIP is defined
   notify: splunk restart
 
 - name: "Configure server.conf [general] - site state=absent (default)"
@@ -23,5 +25,6 @@
             section=general
             option=trustedIP
             state=absent
-  when: splunk_server_conf.general.trustedIP is undefined
+  when: splunk_server_conf.general is undefined or
+        splunk_server_conf.general.trustedIP is undefined
   notify: splunk restart

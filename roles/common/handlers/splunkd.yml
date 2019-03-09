@@ -1,33 +1,39 @@
 ---
 - name: splunk start
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk start"
-  when: splunk_start is defined and
-        splunk_start
+  when: 
+      - splunk_start is defined
+      - splunk_start
 
 - name: splunk stop
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
-  when: splunk_stop is defined and
-        splunk_stop
+  when: 
+      - splunk_stop is defined
+      - splunk_stop
 
 - name: splunk restart
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
-  when: splunk_restart is defined and
-        splunk_restart
+  when: 
+      - splunk_restart is defined
+      - splunk_restart
         
 - name: splunk reload deploy-server
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk reload deploy-server -auth {{ splunk_user }}:{{ splunk_password }}"
-  when: splunk_reload_deploy_server is defined and
-        splunk_reload_deploy_server and
-        inventory_hostname in groups['deploymentserver']
+  when: 
+      - splunk_reload_deploy_server is defined 
+      - splunk_reload_deploy_server 
+      - inventory_hostname in groups['deploymentserver']
 
 - name: splunk apply cluster-bundle
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply cluster-bundle --answer-yes -auth {{ splunk_user }}:{{ splunk_password }}"
-  when: splunk_apply_cluster_bundle is defined and
-        splunk_apply_cluster_bundle and
-        inventory_hostname in groups['masternode']
+  when: 
+      - splunk_apply_cluster_bundle is defined
+      - splunk_apply_cluster_bundle
+      - inventory_hostname in groups['masternode']
 
 - name: splunk apply shcluster-bundle
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply shcluster-bundle -target https://{{ groups['shcmember'][0] }}:8089 --answer-yes -auth {{ splunk_user }}:{{ splunk_password }}"
-  when: splunk_apply_shcluster_bundle is defined and
-        splunk_apply_shcluster_bundle and
-        inventory_hostname in groups['deployer']
+  when: 
+      - splunk_apply_shcluster_bundle is defined 
+      - splunk_apply_shcluster_bundle 
+      - inventory_hostname in groups['deployer']

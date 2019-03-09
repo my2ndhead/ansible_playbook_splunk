@@ -15,7 +15,9 @@
             option=search_factor
             value={{ splunk_server_conf.clustering.search_factor }}
             state=present
-  when: splunk_server_conf.clustering.search_factor is defined
+  when: 
+      - splunk_server_conf.clustering is defined
+      - splunk_server_conf.clustering.search_factor is defined
   notify: splunk restart
 
 - name: "Configure server.conf [clustering] - search_factor state=absent (default)"
@@ -23,7 +25,8 @@
             section=clustering
             option=search_factor
             state=absent
-  when: splunk_server_conf.clustering.search_factor is undefined or
+  when: splunk_server_conf.clustering is undefined or
+        splunk_server_conf.clustering.search_factor is undefined or
         splunk_server_conf.clustering.search_factor == 2
   notify: splunk restart
 

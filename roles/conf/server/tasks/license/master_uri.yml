@@ -15,8 +15,10 @@
             option=master_uri
             value="https://{{ groups['licensemaster'][0] }}:8089"
             state=present
-  when: splunk_server_conf.license.master_uri is defined and
-        splunk_server_conf.license.master_uri == "dynamic"
+  when: 
+      - splunk_server_conf.license is defined
+      - splunk_server_conf.license.master_uri is defined
+      - splunk_server_conf.license.master_uri == "dynamic"
   notify: splunk restart
 
 - name: "Configure server.conf [license] - master_uri state=present (static)"
@@ -25,8 +27,10 @@
             option=master_uri
             value="{{ splunk_server_conf.license.master_uri }}"
             state=present
-  when: splunk_server_conf.license.master_uri is defined and
-        splunk_server_conf.license.master_uri != "dynamic"
+  when: 
+      - splunk_server_conf.license is defined
+      - splunk_server_conf.license.master_uri is defined
+      - splunk_server_conf.license.master_uri != "dynamic"
   notify: splunk restart
 
 - name: "Configure server.conf [license] - master_uri state=absent (default)"
@@ -34,5 +38,6 @@
             section=license
             option=master_uri
             state=absent
-  when: splunk_server_conf.license.master_uri is undefined
+  when:  splunk_server_conf.license is undefined or
+         splunk_server_conf.license.master_uri is undefined
   notify: splunk restart

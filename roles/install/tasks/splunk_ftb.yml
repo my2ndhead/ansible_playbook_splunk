@@ -3,7 +3,9 @@
 - name: First Time Boot Splunk
   service: name=splunk
            state=started
+  become: yes
 
 - name: Stop Splunk
   service: name=splunk
            state=stopped
+  become: yes

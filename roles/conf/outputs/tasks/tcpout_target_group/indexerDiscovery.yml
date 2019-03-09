@@ -7,24 +7,28 @@
 # [tcpout:<tcpout:target_group>]
 #####################################################################################################################
 
-# useAck
+# tcpout:target_group
 
-- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - useACK state=present"
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - tcpout:target_group state=present"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
-            option=useACK
-            value={{ item.value.useACK }}
+            option=indexerDiscovery
+            value={{ item.value.indexerDiscovery }}
             state=present
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
-  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.useACK is defined and
-        splunk_outputs_conf.tcpout.target_group.{{ item.key }}.useACK == true
+  when: 
+      - splunk_outputs_conf.tcpout is defined
+      - splunk_outputs_conf.tcpout.target_group is defined
+      - splunk_outputs_conf.tcpout.target_group.{{ item.key }}.indexerDiscovery is defined
   notify: splunk restart
 
-- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - useACK (default) state=absent"
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - tcpout:target_group state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
-            option=useACK
+            option=indexerDiscovery
             state=absent
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
-  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.useACK is undefined
+  when: splunk_outputs_conf.tcpout is undefined or 
+        splunk_outputs_conf.tcpout.target_group is undefined or
+        splunk_outputs_conf.tcpout.target_group.{{ item.key }}.indexerDiscovery is undefined
   notify: splunk restart

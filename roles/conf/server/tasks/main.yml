@@ -8,6 +8,7 @@
 - include: clustering/replication_factor.yml
 - include: clustering/search_factor.yml
 - include: clustering/site_replication_factor.yml
+- include: clustering/pass4SymmKey.yml
 - include: diskUsage/minFreeSpace.yml
 - include: general/parallelIngestionPipelines.yml
 - include: general/pass4SymmKey.yml

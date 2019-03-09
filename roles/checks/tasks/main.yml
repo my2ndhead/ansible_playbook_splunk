@@ -1,0 +1,2 @@
+---
+- include check_splunk_version.yml

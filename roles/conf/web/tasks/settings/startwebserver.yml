@@ -14,8 +14,10 @@
             section=settings
             option=startwebserver
             value={{ splunk_web_conf.settings.startwebserver }}
-  when: splunk_web_conf.settings.startwebserver is defined and
-        splunk_web_conf.settings.startwebserver == 0
+  when: 
+      - splunk_web_conf.settings is defined
+      - splunk_web_conf.settings.startwebserver is defined
+      - splunk_web_conf.settings.startwebserver == 0
   notify: splunk restart
 
 - name: "Configure web.conf [settings] - startwebserver state=absent (default)"
@@ -23,6 +25,7 @@
             section=settings
             option=startwebserver
             state=absent
-  when: splunk_web_conf.settings.startwebserver is undefined or
+  when: splunk_web_conf.settings is undefined or
+        splunk_web_conf.settings.startwebserver is undefined or
         splunk_web_conf.settings.startwebserver == 1
   notify: splunk restart

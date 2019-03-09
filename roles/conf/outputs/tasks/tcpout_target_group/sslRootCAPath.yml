@@ -7,23 +7,28 @@
 # [tcpout:<tcpout:target_group>]
 #####################################################################################################################
 
-# tcpout:target_group server
+# sslRootCAPath
 
-- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - server state=present"
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - sslRootCAPath state=present"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
-            option=server
-            value={{ item.value.server | join(",") }}
+            option=sslRootCAPath
+            value={{ item.value.sslRootCAPath }}
             state=present
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
-  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.server is defined
+  when: 
+      - splunk_outputs_conf.tcpout is defined
+      - splunk_outputs_conf.tcpout.target_group is defined
+      - splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslRootCAPath is defined
   notify: splunk restart
- 
-- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - server state=absent (default)"
+
+- name: "Configure outputs.conf [tcpout:<tcpout:target_group>] - sslRootCAPath state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
             section=tcpout:{{ item.key }}
-            option=server
+            option=sslRootCAPath
             state=absent
   with_dict: "{{ splunk_outputs_conf.tcpout.target_group }}"
-  when: splunk_outputs_conf.tcpout.target_group.{{ item.key }}.server is undefined
+  when: splunk_outputs_conf.tcpout is undefined or 
+        splunk_outputs_conf.tcpout.target_group is undefined or
+        splunk_outputs_conf.tcpout.target_group.{{ item.key }}.sslRootCAPath is undefined
   notify: splunk restart

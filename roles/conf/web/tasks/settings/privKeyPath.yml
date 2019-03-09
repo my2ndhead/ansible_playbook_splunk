@@ -15,8 +15,10 @@
             option=privKeyPath
             value={{ splunk_web_conf.settings.privKeyPath }}
             state=present
-  when: splunk_web_conf.settings.privKeyPath is defined and
-        splunk_web_conf.settings.privKeyPath != "etc/auth/splunkweb/privkey.pem"
+  when: 
+      - splunk_web_conf.settings is defined
+      - splunk_web_conf.settings.privKeyPath is defined
+      - splunk_web_conf.settings.privKeyPath != "etc/auth/splunkweb/privkey.pem"
   notify: splunk restart
 
 - name: "Configure web.conf [settings] - privKeyPath state=absent (default)"
@@ -24,6 +26,7 @@
             section=settings
             option=privKeyPath
             state=absent
-  when: splunk_web_conf.settings.privKeyPath is undefined or 
+  when: splunk_web_conf.settings is undefined or
+        splunk_web_conf.settings.privKeyPath is undefined or 
         splunk_web_conf.settings.privKeyPath == "etc/auth/splunkweb/privkey.pem"
   notify: splunk restart

@@ -14,8 +14,10 @@
             section=settings option=enableSplunkWebSSL 
             value={{ splunk_web_conf.settings.enableSplunkWebSSL }}
             state=present
-  when: splunk_web_conf.settings.enableSplunkWebSSL is defined and
-        splunk_web_conf.settings.enableSplunkWebSSL == true
+  when: 
+      - splunk_web_conf.settings is defined
+      - splunk_web_conf.settings.enableSplunkWebSSL is defined
+      - splunk_web_conf.settings.enableSplunkWebSSL == true
   notify: splunk restart
 
 - name: "Configure web.conf [settings] - enableSplunkWebSSL state=absent (default)"
@@ -23,6 +25,7 @@
             section=settings
             option=enableSplunkWebSSL
             state=absent
-  when:  splunk_web_conf.settings.enableSplunkWebSSL is undefined or 
+  when: splunk_web_conf.settings is undefined or  
+        splunk_web_conf.settings.enableSplunkWebSSL is undefined or 
          splunk_web_conf.settings.enableSplunkWebSSL == false
   notify: splunk restart
