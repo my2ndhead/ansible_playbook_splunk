@@ -1,2 +1,3 @@
 ---
 - include: copy_enterprise_license_keys.yml
+- include: distribute_distsearch_trustedkey.yml 
