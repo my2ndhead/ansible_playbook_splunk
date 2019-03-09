@@ -1,5 +1,6 @@
 # Ansible Playbook for Splunk
-- **Authors**:	Mika Borner <mika.borner@gmail.com>, Thomas Fischer <mail@se-di.de>
+
+- **Authors**:	Mika Borner <mika.borner _at_ gmail _dot_ com>, Thomas Fischer mail _at_ se-di _dot_ de
 - **Description**:	Ansible Playbook for Splunk
 - **Version**: 		1.0
 
@@ -10,14 +11,26 @@
 
 
 ## License
-- **This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.** [1]
-- **Commercial Use, Excerpt from CC BY-NC-SA 4.0:**
-  - "A commercial use is one primarily intended for commercial advantage or monetary compensation."
-- **In case of Ansible Playbook for Splunk this translates to:**
-  - You may use Ansible Playbook for Splunk in commercial environments for setting up Splunk environments
-  - You may use Ansible Playbook for Splunk as part of your consulting or integration work, if you're considered to be working on behalf of your customer. The customer will be the licensee of Ansible Splunk Playbook and must comply according to the license terms
-  - You are not allowed to sell Ansible Playbook for Splunk as a standalone product or within an application bundle
-  - If you want to use Ansible Playbook for Splunk outside of these license terms, please contact us and we will find a solution
+
+- This work is licensed under the **GNU AFFERO GENERAL PUBLIC LICENSE, Version 3** [[1]]
+
+- Short **excerpt and summary** of the AGPL v3 (read the full license [[1]]):
+
+  > Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
+
+<pre>
+  Permissions         Conditions                      Limitations
+  --------------------------------------------------------------------
+  Commercial use      Disclose source                 Liability
+  Distribution        License and copyright notice    Warranty
+  Modification        Network use is distribution
+  Patent use          Same license
+  Private use         State changes
+</pre>
 
 ## References
-[1] http://creativecommons.org/licenses/by-nc-sa/4.0/
+
+[[1]] AGPLv3 legal code: http://www.gnu.org/licenses/agpl-3.0.txt
+
+[1]: http://www.gnu.org/licenses/agpl-3.0.txt "AGPLv3 legal code"
+
