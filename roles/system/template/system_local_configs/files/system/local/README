@@ -1,0 +1,32 @@
+#####################################################################################
+#
+# Place all files you want to push inside this directory
+# - they will be pushed 1:1 so they have to have .conf ending 
+#   so splunk recognizes them
+#
+#
+# Hint:
+# Whenever you deploy ansible managed files from the ansible server to a target
+# a phrase will be added to the top of each conf file:
+#
+# ########## ANSIBLE FILE-MANAGED - DO NOT TOUCH WITHOUT ANSIBLE (some info) ##########
+#
+# If using now or later the "remove_absent_files" feature ansible will check 
+# for this exact phrase to find out which files are managed and which not!
+# 
+# remove_absent_files - feature:
+#     When you set the "remove_absent_files = true" in the config file all files without
+#     the above phrase will be RENAMED (to $file-unmanaged).
+#     Exact phrase = "^#+\sAnSiBLe\sFiLE-MANaGeD"
+# 	- whole phrase is case insensitive (e.g.: ansible or ANSIBLE or AnSIbLE will all match)
+# 	- "^#+" => search for "#" at the beginning of a line
+# 	- "\s" 	=> 1 white space (no TAB! and not more then 1)
+# 	- the full file! will be checked for this phrase (no need to have it on top but its recommended)
+#
+# Changes made in the GUI:
+#     When you have made changes within the GUI you have to ensure that you
+#     copy the changed files to your ansible server and place them in the 
+#     corresponded directory. If you forget to copy them over and you run ansible the
+#     next time they get overwritten!
+#
+#####################################################################################

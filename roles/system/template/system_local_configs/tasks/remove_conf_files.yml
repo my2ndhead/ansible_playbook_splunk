@@ -1,0 +1,21 @@
+---
+# THIS GETS OVERWRITTEN EACH RUN FROM: roles/system/template/ DIRECTORY! 
+- name: Prepare the next tasks
+  set_fact: handle_unmanaged=false
+
+- name: Check what to do with unmanaged configs
+  set_fact: handle_unmanaged=true
+  when: "{{ item.value.remove_absent_files }} is defined and
+        {{ item.value.remove_absent_files }} == true"
+  with_dict: "{{ vars['app_variable'] }} | app_default"
+
+- name: Get all unmanaged config files
+  shell: grep -Li '^# ANSIBLE FILE-MANAGED' {{ splunk_installation.splunk_home_path }}/etc/system/local/*.conf || true
+  register: grep_unmanaged
+  changed_when: false
+
+- name: Add '-unmanaged' suffix to all unmanaged files
+  shell: mv {{ item }} {{ item }}-unmanaged
+  with_items: grep_unmanaged.stdout_lines
+  when: handle_unmanaged
+

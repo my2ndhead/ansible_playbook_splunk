@@ -1,0 +1,16 @@
+---
+# THIS GETS OVERWRITTEN EACH RUN FROM: roles/system/template/ DIRECTORY! 
+- name: clear var
+  set_fact: shouldinstall="False"
+
+- name: set the var according to the users setting
+  set_fact: shouldinstall="{{ item.value.install }}"
+  when: item.key == "system"
+  with_dict: "{{ vars['app_variable'] }} |app_default"
+
+- name: Configure SYSTEM (local/*.conf)
+  copy: src="{{ item }}"
+        dest="{{ splunk_installation.splunk_home_path }}/etc/system/local/"
+  when: shouldinstall == true
+  with_fileglob: system/local/*.conf
+
